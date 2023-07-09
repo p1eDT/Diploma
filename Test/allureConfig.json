@@ -1,0 +1,8 @@
+﻿{
+  "allure": {
+    "directory": "./ALLURE",
+    "links": [
+      "https://www.testmonitor.com"
+    ]
+  }
+}
