@@ -1,6 +1,4 @@
-﻿using Core;
-using Microsoft.Extensions.Configuration;
-
+﻿
 namespace Core.Configuration
 {
     public class BrowserConfiguration : IConfiguration

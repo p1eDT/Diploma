@@ -5,6 +5,8 @@ namespace Core.Configuration
     public class AppConfiguration
     {
         public static BrowserConfiguration Browser => BindConfiguration<BrowserConfiguration>();
+        public static ApiConfiguration Api => BindConfiguration<ApiConfiguration>();
+
         private static IConfigurationRoot configurationRoot;
 
         static AppConfiguration()

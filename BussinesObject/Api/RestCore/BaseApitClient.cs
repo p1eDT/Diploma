@@ -1,7 +1,6 @@
 ﻿using RestSharp;
-using RestSharp.Authenticators;
 
-namespace API.Core
+namespace Api.RestCore
 {
     public class BaseApiClient
     {
