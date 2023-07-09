@@ -37,4 +37,9 @@
     <Folder Include="TestData\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BussinesObject\BussinesObject.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
 </Project>
