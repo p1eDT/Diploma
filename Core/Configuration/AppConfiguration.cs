@@ -13,7 +13,7 @@ namespace Core.Configuration
         {
             configurationRoot = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(path: ".\\appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
         }
 

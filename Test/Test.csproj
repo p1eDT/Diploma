@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UiTests\" />
     <Folder Include="TestData\" />
   </ItemGroup>
 
