@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.Configuration;
 using Core.Selenium;
 using OpenQA.Selenium;
 
@@ -7,8 +6,6 @@ namespace BussinesObject.UI.Pages
 {
     public class LoginPage : BasePage
     {
-        public string url = AppConfiguration.Browser.Site;
-
         private By EmailInput = By.Id("email");
         private By PasswordInput = By.Id("password");
         private By LoginButton = By.XPath("//button[@type='submit']");
@@ -17,10 +14,10 @@ namespace BussinesObject.UI.Pages
         {
         }
 
-        public LoginPage Login() 
+        public MyProjectsPage Login() 
         {
             TryToLogin(UserBuilder.GetUserFromAppSettings());
-            return this;
+            return new MyProjectsPage();
         }
 
         public void TryToLogin(UserModel userModel)
@@ -32,7 +29,7 @@ namespace BussinesObject.UI.Pages
 
         public override LoginPage OpenPage()
         {
-            Browser.Instance.NavigateToUrl(url);
+            Browser.Instance.NavigateToUrl(BaseUrl);
             return this;
         }
     }

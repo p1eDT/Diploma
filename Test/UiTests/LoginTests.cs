@@ -14,7 +14,7 @@ namespace Test.UiTests
             //TODO put this in a separate class or step
             var brandLogoUrl = Browser.Instance.Driver.FindElement(By.CssSelector(".navbar-brand")).FindElement(By.TagName("a")).GetAttribute("href");
 
-            Assert.That(brandLogoUrl, Is.EqualTo(login.url));
+            Assert.That(brandLogoUrl, Is.EqualTo(BasePage.BaseUrl));
         }
     }
 }
