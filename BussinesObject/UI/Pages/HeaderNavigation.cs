@@ -1,36 +1,36 @@
 ﻿using Core.Selenium;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BussinesObject.UI.Pages
 {
     public class HeaderNavigation:BasePage
     {
-        //brand,settings,account одинаковые и есть на всех страницах насколько я увидел, можно сразу конструкторе прописать
+        private By brand = By.CssSelector(".navbar-brand");
+        private By settings = By.XPath("//div[@class='navbar-end']/a");
+        private By account = By.CssSelector("a.navbar-link:has(figure)");
+        private By navMenu = By.CssSelector("div.navbar-start");
+
         public IWebElement Brand;
         public IWebElement Settings;
         public IWebElement Account;
-
-        //само меню везде есть, но его наполнение отличается
         public IWebElement NavMenu;
 
         public HeaderNavigation()
         {
-            //пока закомментил это дело, чтобы билд собирался
-
-            //Brand =Browser.Instance.Driver.FindElement();
-            //Settings = Browser.Instance.Driver.FindElement();
-            //Account = Browser.Instance.Driver.FindElement();
-            //NavMenu = Browser.Instance.Driver.FindElement();
+            Brand = Browser.Instance.Driver.FindElement(brand);
+            Settings = Browser.Instance.Driver.FindElement(settings);
+            Account = Browser.Instance.Driver.FindElement(account);
+            NavMenu = Browser.Instance.Driver.FindElement(navMenu);
         }
 
         public override HeaderNavigation OpenPage()
         {
             throw new NotImplementedException();
+        }
+
+        public void ClickNavMenuItem(string item) 
+        {
+            NavMenu.FindElement(By.LinkText(item)).Click();
         }
     }
 }

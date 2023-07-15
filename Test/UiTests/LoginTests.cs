@@ -9,10 +9,9 @@ namespace Test.UiTests
         [Test]
         public void LoginUser()
         {
-            var login = new LoginPage().OpenPage().Login();
+            var homePage = new LoginPage().OpenPage().Login();
 
-            //TODO put this in a separate class or step
-            var brandLogoUrl = Browser.Instance.Driver.FindElement(By.CssSelector(".navbar-brand")).FindElement(By.TagName("a")).GetAttribute("href");
+            var brandLogoUrl = homePage.Header.Brand.FindElement(By.TagName("a")).GetAttribute("href");
 
             Assert.That(brandLogoUrl, Is.EqualTo(BasePage.BaseUrl));
         }

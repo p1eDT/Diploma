@@ -10,9 +10,21 @@ namespace Test.UiTests
         {
             new LoginPage().OpenPage().Login();
             new TestSuitesPage()
-                .OpenPageTS()
+                .OpenPage()
                 .OpenNewTestSuiteModal()
                 .CreateTestSuite("TestSuiteTest");
+        }
+
+        [Test]
+        public void CreateTestSuiteTest2()
+        {
+            new LoginPage()
+                .OpenPage()
+                .Login()
+                .SelectProject()
+                .OpenSuites()
+                .OpenNewTestSuiteModal()
+                .CreateTestSuite("LongChainTest");
         }
     }
 }

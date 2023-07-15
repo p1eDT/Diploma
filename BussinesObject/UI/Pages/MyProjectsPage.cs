@@ -1,29 +1,24 @@
-﻿using Core.Configuration;
-using Core.Selenium;
-using NUnit.Engine.Extensibility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Selenium;
+using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
-    public class MyProjectsPage : BasePage
+    public class MyProjectsPage : HomePage
     {
-        private string url = $"{BaseUrl}my - projects";
-
-        //наверное надо создать какую-то BaseTemplatePage:BasePage и от нее наследоваться, чтобы хедер везде не добавлять
-        HeaderNavigation Header = new HeaderNavigation();
-
         public MyProjectsPage()
         {
         }
 
-        public override BasePage OpenPage()
+        public override MyProjectsPage OpenPage()
         {
-            Browser.Instance.NavigateToUrl(url);
+            Browser.Instance.NavigateToUrl(homeUrl);
             return this;
+        }
+
+        public ProjectPage SelectProject(string projectName= "Web Application Starter Kit")
+        {
+            Driver.FindElement(By.XPath($"//h3[text()='{projectName}']")).Click();
+            return new ProjectPage();
         }
     }
 }
