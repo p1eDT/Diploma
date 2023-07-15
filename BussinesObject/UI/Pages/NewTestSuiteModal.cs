@@ -8,7 +8,7 @@ namespace BussinesObject.UI.Pages
         Input testSuiteName = new("Name");
         Button addButton = new("success");
 
-        public void CreateAccount(string name)
+        public void CreateTestSuite(string name)
         {
             testSuiteName.GetElement().SendKeys(name);
             addButton.GetElement().Click();

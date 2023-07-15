@@ -6,13 +6,13 @@ namespace Test.UiTests
     public class AddTestSuiteTest : BaseTest
     {
         [Test]
-        public void CreateAccountTest()
+        public void CreateTestSuiteTest()
         {
             new LoginPage().OpenPage().Login();
             new TestSuitesPage()
                 .OpenPageTS()
                 .OpenNewTestSuiteModal()
-                .CreateAccount("TestSuiteTest");
+                .CreateTestSuite("TestSuiteTest");
         }
     }
 }
