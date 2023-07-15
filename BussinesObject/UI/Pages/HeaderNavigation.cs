@@ -20,10 +20,12 @@ namespace BussinesObject.UI.Pages
 
         public HeaderNavigation()
         {
-            Brand =Browser.Instance.Driver.FindElement();
-            Settings = Browser.Instance.Driver.FindElement();
-            Account = Browser.Instance.Driver.FindElement();
-            NavMenu = Browser.Instance.Driver.FindElement();
+            //пока закомментил это дело, чтобы билд собирался
+
+            //Brand =Browser.Instance.Driver.FindElement();
+            //Settings = Browser.Instance.Driver.FindElement();
+            //Account = Browser.Instance.Driver.FindElement();
+            //NavMenu = Browser.Instance.Driver.FindElement();
         }
 
         public override HeaderNavigation OpenPage()
