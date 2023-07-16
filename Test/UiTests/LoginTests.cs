@@ -15,5 +15,13 @@ namespace Test.UiTests
 
             Assert.That(brandLogoUrl, Is.EqualTo(BasePage.BaseUrl));
         }
+
+        [Test]
+        public void LoginAsFakeUser()
+        {
+            var message = new LoginPage().OpenPage().LoginAsFakeUser();
+
+            Assert.That(message.TextMessage, Is.EqualTo(message.GetErrorMessage()));
+        }
     }
 }

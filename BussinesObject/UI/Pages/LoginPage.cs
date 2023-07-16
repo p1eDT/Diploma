@@ -10,12 +10,14 @@ namespace BussinesObject.UI.Pages
         Input EmailInput = new("email");
         Input PasswordInput = new("password");
         Button LoginButton = new("primary is-fullwidth");
+        By ErrorMessage = By.ClassName("message-body");
+        public string TextMessage = "These credentials do not match our records.";
 
-        public LoginPage() 
+        public LoginPage()
         {
         }
 
-        public MyProjectsPage Login() 
+        public MyProjectsPage Login()
         {
             TryToLogin(UserBuilder.GetUserFromAppSettings());
             return new MyProjectsPage();
@@ -31,6 +33,17 @@ namespace BussinesObject.UI.Pages
         public override LoginPage OpenPage()
         {
             Browser.Instance.NavigateToUrl(BaseUrl);
+            return this;
+        }
+
+        public string GetErrorMessage()
+        {
+            return Driver.FindElement(ErrorMessage).Text;
+        }
+
+        public LoginPage LoginAsFakeUser()
+        {
+            TryToLogin(UserBuilder.GetFakerUser());
             return this;
         }
     }
