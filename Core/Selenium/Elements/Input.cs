@@ -8,8 +8,11 @@ namespace Core.Selenium.Elements
         {
         }
 
-        public Input(string name) : base($"//label[contains(text(),{name})]/following-sibling::div/input")
-        
+        public Input(string type, string name) : base($"//input[@type='{type}'][@name='{name}']")
+        {
+        }
+
+        public Input(string type) : base($"//input[@type='{type}']")
         {
         }
     }

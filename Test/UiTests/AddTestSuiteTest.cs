@@ -12,7 +12,7 @@ namespace Test.UiTests
             new TestSuitesPage()
                 .OpenPage()
                 .OpenNewTestSuiteModal()
-                .CreateTestSuite("TestSuiteTest");
+                .CreateTestSuite("TestSuiteTest1");
         }
 
         [Test]
