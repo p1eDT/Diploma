@@ -1,6 +1,5 @@
 ﻿using Core.Selenium;
 using Core.Selenium.Elements;
-using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
@@ -26,9 +25,15 @@ namespace BussinesObject.UI.Pages
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
-            new Button("primary").GetElement().Click();
+            new Button("primary").ClickElementViaJs();
 
             return new NewTestSuiteModal();
+        }
+
+        public TestCasesPage OpenTestSuite(string nameTestSuite)
+        {
+            new LinkTest("is-link is-inverted", nameTestSuite).ClickElementViaJs();
+            return new TestCasesPage();
         }
     }
 }

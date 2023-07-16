@@ -1,5 +1,4 @@
 ﻿using Core.Selenium.Elements;
-using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
@@ -11,7 +10,7 @@ namespace BussinesObject.UI.Pages
         public void CreateTestSuite(string name)
         {
             testSuiteName.GetElement().SendKeys(name);
-            addButton.GetElement().Click();
+            addButton.ClickElementViaJs();
         }
     }
 }
