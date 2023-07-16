@@ -1,14 +1,15 @@
 ﻿using Core;
 using Core.Selenium;
+using Core.Selenium.Elements;
 using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
     public class LoginPage : BasePage
     {
-        private By EmailInput = By.Id("email");
-        private By PasswordInput = By.Id("password");
-        private By LoginButton = By.XPath("//button[@type='submit']");
+        Input EmailInput = new("email");
+        Input PasswordInput = new("password");
+        Button LoginButton = new("primary is-fullwidth");
 
         public LoginPage() 
         {
@@ -22,9 +23,9 @@ namespace BussinesObject.UI.Pages
 
         public void TryToLogin(UserModel userModel)
         {
-            Driver.FindElement(EmailInput).SendKeys(userModel.Name);
-            Driver.FindElement(PasswordInput).SendKeys(userModel.Password);
-            Driver.FindElement(LoginButton).Click();
+            EmailInput.GetElement().SendKeys(userModel.Name);
+            PasswordInput.GetElement().SendKeys(userModel.Password);
+            LoginButton.GetElement().Click();
         }
 
         public override LoginPage OpenPage()
