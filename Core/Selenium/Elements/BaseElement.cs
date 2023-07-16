@@ -22,6 +22,11 @@ namespace Core.Selenium.Elements
         {
             return Browser.Instance.ExecuteScript("arguments[0].click();", GetElement());
         }
-
+        //public string GetElementAttribute(string xpath, string attribute) 
+        //{
+        //    locator = By.XPath(xpath);
+            
+        //    return value;
+        //}
     }
 }
