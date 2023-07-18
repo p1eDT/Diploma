@@ -13,7 +13,7 @@ namespace Test.UiTests
                 .OpenPage()
                 .OpenTestSuite("TestSuiteTest3")
                 .OpenNewTestCaseModal()
-                .CreateTestCase("TestTest","10");
+                .CreateTestCase("TestTestTest","10");
         }
     }
 }

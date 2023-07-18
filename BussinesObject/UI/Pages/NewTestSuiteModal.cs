@@ -9,7 +9,7 @@ namespace BussinesObject.UI.Pages
 
         public void CreateTestSuite(string name)
         {
-            testSuiteName.GetElement().SendKeys(name);
+            testSuiteName.SetText(name);
             addButton.ClickElementViaJs();
         }
     }

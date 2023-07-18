@@ -8,23 +8,14 @@ namespace Test.UiTests
         [Test]
         public void CreateTestSuiteTest()
         {
-            new LoginPage().OpenPage().Login();
-            new TestSuitesPage()
-                .OpenPage()
-                .OpenNewTestSuiteModal()
-                .CreateTestSuite("TestSuiteTest3");
-        }
-
-        [Test]
-        public void CreateTestSuiteTest2()
-        {
+            string testSuiteName = "LongChainTest";
             new LoginPage()
                 .OpenPage()
                 .Login()
                 .SelectProject()
                 .OpenSuites()
                 .OpenNewTestSuiteModal()
-                .CreateTestSuite("LongChainTest");
+                .CreateTestSuite(testSuiteName);
         }
     }
 }

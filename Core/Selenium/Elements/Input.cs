@@ -15,5 +15,10 @@ namespace Core.Selenium.Elements
         public Input(string type) : base($"//input[@type='{type}']")
         {
         }
+
+        public void SetText(string text)
+        {
+            GetElement().SendKeys(text);
+        }
     }
 }

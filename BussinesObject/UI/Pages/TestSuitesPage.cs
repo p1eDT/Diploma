@@ -16,12 +16,6 @@ namespace BussinesObject.UI.Pages
             Browser.Instance.NavigateToUrl(url);
             return this;
         }
-        //по идее теперь не нужно
-        //public TestSuitesPage OpenPageTS()
-        //{
-        //    Browser.Instance.NavigateToUrl(url);
-        //    return this;
-        //}
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
@@ -32,7 +26,8 @@ namespace BussinesObject.UI.Pages
 
         public TestCasesPage OpenTestSuite(string nameTestSuite)
         {
-            new LinkTest("is-link is-inverted", nameTestSuite).ClickElementViaJs();
+            new CardContent().SearchElement(nameTestSuite);
+            new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
             return new TestCasesPage();
         }
     }
