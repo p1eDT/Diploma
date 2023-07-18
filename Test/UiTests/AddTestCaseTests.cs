@@ -1,4 +1,5 @@
-﻿using BussinesObject.UI.Pages;
+﻿using Bogus;
+using BussinesObject.UI.Pages;
 using Core.Selenium;
 
 namespace Test.UiTests
@@ -8,12 +9,20 @@ namespace Test.UiTests
         [Test]
         public void CreateTestCaseBasicTest()
         {
+            Faker faker = new Faker();
+            string nameTestCase = faker.Lorem.Word();
+            string duration = faker.Random.Number(100).ToString();
+            string testSuite = "TestSuiteTest3";
+
             new LoginPage().OpenPage().Login();
-            new TestSuitesPage()
-                .OpenPage()
-                .OpenTestSuite("TestSuiteTest3")
-                .OpenNewTestCaseModal()
-                .CreateTestCase("TestTestTest","10");
+            var testSuites = new TestSuitesPage().OpenPage();
+            testSuites.SearchElement(testSuite);
+            testSuites.OpenTestSuite(testSuite).OpenNewTestCaseModal().CreateTestCase(nameTestCase, duration);
+
+            string testCaseCode = new TestCasesPage().GetTestCaseCode(nameTestCase);
+            string alert = new HomePage().GetAlertText();
+
+            Assert.That(alert, Is.EqualTo($"Test case {testCaseCode} created"));
         }
     }
 }

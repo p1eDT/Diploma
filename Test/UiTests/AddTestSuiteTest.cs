@@ -1,4 +1,5 @@
-﻿using BussinesObject.UI.Pages;
+﻿using Bogus;
+using BussinesObject.UI.Pages;
 using Core.Selenium;
 
 namespace Test.UiTests
@@ -8,7 +9,9 @@ namespace Test.UiTests
         [Test]
         public void CreateTestSuiteTest()
         {
-            string testSuiteName = "LongChainTest";
+            Faker faker = new Faker();
+            string testSuiteName = faker.Commerce.ProductName();
+
             new LoginPage()
                 .OpenPage()
                 .Login()
@@ -16,6 +19,10 @@ namespace Test.UiTests
                 .OpenSuites()
                 .OpenNewTestSuiteModal()
                 .CreateTestSuite(testSuiteName);
+
+            string alert = new HomePage().GetAlertText();
+
+            Assert.That(alert, Is.EqualTo($"Test suite {testSuiteName} created"));
         }
     }
 }

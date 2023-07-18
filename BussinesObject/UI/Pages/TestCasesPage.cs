@@ -1,5 +1,6 @@
 ﻿using Core.Selenium;
 using Core.Selenium.Elements;
+using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
@@ -21,6 +22,13 @@ namespace BussinesObject.UI.Pages
             new Button("primary").ClickElementViaJs();
 
             return new NewTestCaseModal();
+        }
+
+        public string GetTestCaseCode(string name)
+        {
+            string code = Driver.FindElement(By.XPath($"//div[contains(text(),'{name}')]//ancestor::tr//td[@data-label='Code']//strong")).Text;
+
+            return code;
         }
     }
 }

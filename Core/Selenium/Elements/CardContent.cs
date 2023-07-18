@@ -7,11 +7,5 @@ namespace Core.Selenium.Elements
         public CardContent() : base(By.XPath("//*[@class='card-content']"))
         { 
         }
-
-        public void SearchElement(string name)
-        {
-            Input search = new("search");
-            search.SetText(name);
-        }
     }
 }

@@ -26,7 +26,6 @@ namespace BussinesObject.UI.Pages
 
         public TestCasesPage OpenTestSuite(string nameTestSuite)
         {
-            new CardContent().SearchElement(nameTestSuite);
             new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
             return new TestCasesPage();
         }
