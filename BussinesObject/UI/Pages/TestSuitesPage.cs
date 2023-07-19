@@ -1,11 +1,13 @@
 ﻿using Core.Selenium;
 using Core.Selenium.Elements;
+using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
-    public class TestSuitesPage : HomePage
+    public class TestSuitesPage : HomePage, IDelete
     {
         private string url = $"{BaseUrl}web-ap/design/test-suites";
+        Button AddTestSuiteButton = ButtonBuilder.AddButton();
 
         public TestSuitesPage()
         {
@@ -19,8 +21,7 @@ namespace BussinesObject.UI.Pages
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
-            new Button("primary").ClickElementViaJs();
-
+            AddTestSuiteButton.ClickElementViaJs();
             return new NewTestSuiteModal();
         }
 
@@ -28,6 +29,18 @@ namespace BussinesObject.UI.Pages
         {
             new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
             return new TestCasesPage();
+        }
+
+        public TestSuitesPage DeleteTestSuite(string testSuiteName) 
+        {
+            var testSuitesDeletable = this as IDelete;
+            testSuitesDeletable.Delete(testSuiteName);
+            return new TestSuitesPage(); 
+        }
+
+        public string TestSuiteByName(string name)
+        {
+            return Driver.FindElement(By.LinkText(name)).Text;
         }
     }
 }

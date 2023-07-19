@@ -1,4 +1,5 @@
-﻿using BussinesObject.UI.Pages;
+﻿using BussinesObject;
+using BussinesObject.UI.Pages;
 using Core.Selenium;
 using OpenQA.Selenium;
 
@@ -21,7 +22,17 @@ namespace Test.UiTests
         {
             var message = new LoginPage().OpenPage().LoginAsFakeUser();
 
-            Assert.That(message.TextMessage, Is.EqualTo(message.GetErrorMessage()));
+            Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
+        }
+
+        [Test]
+        public void LoginWithEmptyInputs()
+        {
+            var loginPage = new LoginPage().OpenPage();
+
+            loginPage.TryToLogin(UserBuilder.EmptyUser());
+            Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
+
         }
     }
 }

@@ -41,6 +41,11 @@ namespace BussinesObject.UI.Pages
             return Driver.FindElement(ErrorMessage).Text;
         }
 
+        public string GetPopupMessage()
+        {
+            return PasswordInput.GetElement().GetAttribute("validationMessage");
+        }
+
         public LoginPage LoginAsFakeUser()
         {
             TryToLogin(UserBuilder.GetFakerUser());

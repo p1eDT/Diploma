@@ -24,5 +24,14 @@ namespace BussinesObject
                 password: faker.Internet.Password()
              );
         }
+
+        public static UserModel EmptyUser()
+        {
+            return new UserModel
+            (
+                name: "",
+                password: ""
+             );
+        }
     }
 }
