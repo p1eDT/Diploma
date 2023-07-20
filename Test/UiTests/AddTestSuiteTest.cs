@@ -11,6 +11,7 @@ namespace Test.UiTests
         {
             Faker faker = new Faker();
             string testSuiteName = faker.Commerce.ProductName();
+            string description = faker.Commerce.ProductDescription();
 
             new LoginPage()
                 .OpenPage()
@@ -18,7 +19,7 @@ namespace Test.UiTests
                 .SelectProject()
                 .OpenSuites()
                 .OpenNewTestSuiteModal()
-                .CreateTestSuite(testSuiteName);
+                .CreateTestSuite(testSuiteName, description);
 
             string alert = new HomePage().GetAlertText();
 

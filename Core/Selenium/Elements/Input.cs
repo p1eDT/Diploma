@@ -18,6 +18,7 @@ namespace Core.Selenium.Elements
 
         public void SetText(string text)
         {
+            GetElement().Clear();
             GetElement().SendKeys(text);
         }
     }

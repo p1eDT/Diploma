@@ -4,13 +4,14 @@ namespace BussinesObject.UI.Pages
 {
     public class NewTestSuiteModal
     {
-        Input testSuiteName = new("text","name");
-        Button addButton = new("success");
+        Input TestSuiteName = new("text","name");
+        TextArea Description = new("description");
 
-        public void CreateTestSuite(string name)
+        public void CreateTestSuite(string name, string description)
         {
-            testSuiteName.SetText(name);
-            addButton.ClickElementViaJs();
+            TestSuiteName.SetText(name);
+            Description.SetText(description);
+            ButtonBuilder.SuccessButton().ClickElementViaJs();
         }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Selenium.Elements
 {
@@ -32,6 +27,11 @@ namespace Core.Selenium.Elements
         public static Button AddButton() 
         { 
             return new Button("primary");
+        }
+
+        public static Button SuccessButton()
+        {
+            return new Button("success");
         }
     }
 }

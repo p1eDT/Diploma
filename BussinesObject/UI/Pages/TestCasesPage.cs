@@ -7,6 +7,8 @@ namespace BussinesObject.UI.Pages
     public class TestCasesPage : BasePage
     {
         private string url = $"{BaseUrl}web-ap/design/test-suites";
+        Button AddTestCaseButton = ButtonBuilder.AddButton();
+
         public TestCasesPage()
         {
         }
@@ -14,21 +16,20 @@ namespace BussinesObject.UI.Pages
         public override TestCasesPage OpenPage()
         {
             Browser.Instance.NavigateToUrl(url);
+
             return this;
         }
 
         public NewTestCaseModal OpenNewTestCaseModal()
         {
-            new Button("primary").ClickElementViaJs();
+            AddTestCaseButton.ClickElementViaJs();
 
             return new NewTestCaseModal();
         }
 
         public string GetTestCaseCode(string name)
         {
-            string code = Driver.FindElement(By.XPath($"//div[contains(text(),'{name}')]//ancestor::tr//td[@data-label='Code']//strong")).Text;
-
-            return code;
+            return Driver.FindElement(By.XPath($"//div[contains(text(),'{name}')]//ancestor::tr//td[@data-label='Code']//strong")).Text;
         }
     }
 }

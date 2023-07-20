@@ -9,20 +9,20 @@ namespace BussinesObject.UI.Pages
     {
         Input testCaseName = new("text", "name");
         Input duration = new("tel", "duration");
-        Button addButton = new("success");
+        Button addButton = ButtonBuilder.SuccessButton();
         Button plusButton = new(By.XPath("//a[@class='button is-primary']"));
         Faker faker = new Faker();
 
         public void CreateTestCase(string name,string time)
         {
-            testCaseName.GetElement().SendKeys(name);
-            duration.GetElement().SendKeys(time);
+            testCaseName.SetText(name);
+            duration.SetText(time);
             addButton.ClickElementViaJs();
         }
 
         public void CreateTestCase(string name, string time, int stepCount)
         {
-            testCaseName.GetElement().SendKeys(name);
+            testCaseName.SetText(name);
             duration.GetElement().SendKeys(time);
 
             var inputFirst = Browser.Instance.Driver.FindElement(By.XPath("//div[@class='ProseMirror is-input']"));
@@ -37,6 +37,11 @@ namespace BussinesObject.UI.Pages
             }
 
             addButton.ClickElementViaJs();
+        }
+
+        public string GetDangerText()
+        {
+            return Browser.Instance.Driver.FindElement(By.XPath("//p[@class='help is-danger']")).Text;
         }
     }
 }

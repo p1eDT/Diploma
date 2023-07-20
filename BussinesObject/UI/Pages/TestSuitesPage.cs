@@ -16,18 +16,21 @@ namespace BussinesObject.UI.Pages
         public override TestSuitesPage OpenPage()
         {
             Browser.Instance.NavigateToUrl(url);
+
             return this;
         }
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
             AddTestSuiteButton.ClickElementViaJs();
+
             return new NewTestSuiteModal();
         }
 
         public TestCasesPage OpenTestSuite(string nameTestSuite)
         {
             new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
+
             return new TestCasesPage();
         }
 
@@ -35,6 +38,7 @@ namespace BussinesObject.UI.Pages
         {
             var testSuitesDeletable = this as IDelete;
             testSuitesDeletable.Delete(testSuiteName);
+
             return new TestSuitesPage(); 
         }
 
