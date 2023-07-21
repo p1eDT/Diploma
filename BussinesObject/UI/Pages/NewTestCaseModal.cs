@@ -32,6 +32,7 @@ namespace BussinesObject.UI.Pages
             {
                 plusButton.ClickElementViaJs();
                 //тут надо как-то выставить задержку, либо я хз что делать. через раз не может найти элемент на следующем шаге
+                Thread.Sleep(5000);
                 var input = Browser.Instance.Driver.FindElement(By.XPath("//div[@class='ProseMirror is-input']//p[@class ='is-empty is-editor-empty']//parent::div"));
                 input.SendKeys(faker.Name.JobDescriptor());
             }

@@ -1,12 +1,23 @@
 ﻿using Bogus;
 using BussinesObject.UI.Pages;
 using Core.Selenium;
+using NUnit.Allure.Attributes;
 
 namespace Test.UiTests
 {
     public class AddTestCaseTests : BaseTest
     {
+
+        [SetUp]
+        public void SetUp()
+        {
+            new LoginPage().OpenPage().Login();
+        }
+
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
         public void CreateTestCaseBasicTest()
         {
             Faker faker = new Faker();
@@ -14,7 +25,7 @@ namespace Test.UiTests
             string duration = faker.Random.Number(100).ToString();
             string testSuite = "TestSuiteTest3";
 
-            new LoginPage().OpenPage().Login();
+            
             var testSuites = new TestSuitesPage().OpenPage();
             testSuites.SearchElement(testSuite);
             testSuites.OpenTestSuite(testSuite).OpenNewTestCaseModal().CreateTestCase(nameTestCase, duration);
@@ -26,6 +37,9 @@ namespace Test.UiTests
         }
 
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
         public void CreateTestCaseFullTest()
         {
             Faker faker = new Faker();
@@ -34,7 +48,6 @@ namespace Test.UiTests
             int stepCount = 2;
             string testSuite = "TestSuiteTest3";
 
-            new LoginPage().OpenPage().Login();
             var testSuites = new TestSuitesPage().OpenPage();
             testSuites.SearchElement(testSuite);
             testSuites.OpenTestSuite(testSuite).OpenNewTestCaseModal().CreateTestCase(nameTestCase, duration, stepCount);
@@ -46,6 +59,9 @@ namespace Test.UiTests
         }
 
         [Test]
+        [AllureTag("Negative tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
         public void DurationValidTest()
         {
             Faker faker = new Faker();
@@ -53,7 +69,6 @@ namespace Test.UiTests
             string duration = string.Empty;
             string testSuite = "TestSuiteTest3";
 
-            new LoginPage().OpenPage().Login();
             var testSuites = new TestSuitesPage().OpenPage();
             testSuites.SearchElement(testSuite);
             var testCase = testSuites.OpenTestSuite(testSuite).OpenNewTestCaseModal();

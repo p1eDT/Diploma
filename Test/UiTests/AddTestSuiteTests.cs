@@ -4,8 +4,15 @@ using Core.Selenium;
 
 namespace Test.UiTests
 {
-    public class AddTestSuiteTest : BaseTest
+    public class AddTestSuiteTests : BaseTest
     {
+
+        [SetUp]
+        public void SetUp()
+        {
+            new LoginPage().OpenPage().Login().SelectProject().OpenSuites();
+        }
+
         [Test]
         public void CreateTestSuiteTest()
         {
@@ -13,13 +20,7 @@ namespace Test.UiTests
             string testSuiteName = faker.Commerce.ProductName();
             string description = faker.Commerce.ProductDescription();
 
-            new LoginPage()
-                .OpenPage()
-                .Login()
-                .SelectProject()
-                .OpenSuites()
-                .OpenNewTestSuiteModal()
-                .CreateTestSuite(testSuiteName, description);
+            new TestSuitesPage().OpenNewTestSuiteModal().CreateTestSuite(testSuiteName, description);
 
             string alert = new HomePage().GetAlertText();
 
