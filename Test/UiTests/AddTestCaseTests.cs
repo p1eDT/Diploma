@@ -45,7 +45,7 @@ namespace Test.UiTests
             Faker faker = new Faker();
             string nameTestCase = faker.Lorem.Word();
             string duration = faker.Random.Number(100).ToString();
-            int stepCount = 2;
+            int stepCount = 5;
             string testSuite = "TestSuiteTest3";
 
             var testSuites = new TestSuitesPage().OpenPage();
