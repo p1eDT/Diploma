@@ -15,6 +15,7 @@ namespace BussinesObject.UI.Pages
             CheckItem(item);
             DeleteFromDropdown();
             IsConfirm();
+            Thread.Sleep(1000);
         }
 
         public void CheckItem(string item)

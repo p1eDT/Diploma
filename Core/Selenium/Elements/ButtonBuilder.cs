@@ -21,7 +21,7 @@ namespace Core.Selenium.Elements
 
         public static Button DeleteInDropDownButton()
         {
-            return new Button(By.XPath("//div[contains(text(),'Delete')]"));
+            return new Button(By.XPath("//div[contains(text(),'Delete...')]"));
         }
 
         public static Button AddButton() 

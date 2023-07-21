@@ -11,7 +11,7 @@ namespace Core.Selenium.Elements
     {
         public static CheckBox GetCheckBoxInTableByName(string name)
         {
-            return new CheckBox(By.XPath($"//a[text()='{name}']/ancestor::tr//input[@type='checkbox']"));
+            return new CheckBox(By.XPath($"//*[contains(text(),'{name}')]/ancestor::tr//input[@type='checkbox']"));         
         }
 
         public static CheckBox GetCheckBoxInTableByCode(string code)

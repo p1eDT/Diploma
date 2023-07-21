@@ -9,9 +9,9 @@ namespace Test.UiTests
     public class DeleteTestSuiteTests : BaseTest
     {
         [Test]
-        public void Test()
+        public void DeleteTSTest()
         {
-            var testSuiteForDelete = "dsf";
+            var testSuiteForDelete = "proba";
 
             var suites = new LoginPage()
                         .OpenPage()
@@ -19,10 +19,6 @@ namespace Test.UiTests
                         .SelectProject("Test1Project")
                         .OpenSuites()
                         .DeleteTestSuite(testSuiteForDelete);
-
-            Thread.Sleep(3000);
-
-            //Assert.That(suites.TestSuiteByName(testSuiteForDelete).Text, Is.EqualTo("dsf"));
 
             Assert.Throws<NoSuchElementException>(() => suites.TestSuiteByName(testSuiteForDelete));
         }
