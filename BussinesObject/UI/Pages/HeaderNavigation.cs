@@ -5,7 +5,7 @@ namespace BussinesObject.UI.Pages
 {
     public class HeaderNavigation:BasePage
     {
-        private By brand = By.CssSelector(".navbar-brand");
+        private By brand = By.CssSelector(".navbar-brand>a");
         private By settings = By.XPath("//div[@class='navbar-end']/a");
         private By account = By.CssSelector("a.navbar-link:has(figure)");
         private By navMenu = By.CssSelector("div.navbar-start");

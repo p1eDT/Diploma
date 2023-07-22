@@ -1,5 +1,6 @@
 ﻿using BussinesObject.UI.Pages;
 using Core.Selenium;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace Test.UiTests
     public class DeleteTestCaseTests:BaseTest
     {
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
         public void DeleteTCTest()
         {
             var testCaseForDelete = "dsf";
@@ -22,10 +26,8 @@ namespace Test.UiTests
                         .SelectProject("Test1Project")
                         .OpenSuites()
                         .OpenTestSuite("proba")
-                        .DeleteTestCase("123")
-                        .DeleteTestCase("TC22");
-
-            Thread.Sleep(3000);
+                        .DeleteTestCase("proba")
+                        .DeleteTestCase("TC29");
 
             Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCaseForDelete));
         }

@@ -27,6 +27,11 @@ namespace BussinesObject.UI.Pages
             return Alert; 
         }
 
+        public string BrandUrl()
+        {
+            return Header.Brand.GetAttribute("href");
+        }
+
         public void SearchElement(string name)
         {
             Input search = new("search");

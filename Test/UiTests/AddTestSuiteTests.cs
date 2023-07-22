@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using BussinesObject.UI.Pages;
 using Core.Selenium;
+using NUnit.Allure.Attributes;
 
 namespace Test.UiTests
 {
@@ -14,6 +15,9 @@ namespace Test.UiTests
         }
 
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
         public void CreateTestSuiteTest()
         {
             Faker faker = new Faker();

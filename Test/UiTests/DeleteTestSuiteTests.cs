@@ -2,6 +2,7 @@
 using BussinesObject.UI.Pages;
 using Core.Selenium;
 using Core.Selenium.Elements;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 namespace Test.UiTests
@@ -9,6 +10,9 @@ namespace Test.UiTests
     public class DeleteTestSuiteTests : BaseTest
     {
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
         public void DeleteTSTest()
         {
             var testSuiteForDelete = "proba";

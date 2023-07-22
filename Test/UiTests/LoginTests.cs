@@ -1,6 +1,7 @@
 ﻿using BussinesObject;
 using BussinesObject.UI.Pages;
 using Core.Selenium;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 namespace Test.UiTests
@@ -8,29 +9,42 @@ namespace Test.UiTests
     public class LoginTests : BaseTest
     {
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
         public void LoginUser()
         {
-            var homePage = new LoginPage().OpenPage().Login();
+            var homePage = new LoginPage()
+                .OpenPage()
+                .Login();
 
-            var brandLogoUrl = homePage.Header.Brand.FindElement(By.TagName("a")).GetAttribute("href");
-
-            Assert.That(brandLogoUrl, Is.EqualTo(BasePage.BaseUrl));
+            Assert.That(homePage.BrandUrl(), Is.EqualTo(BasePage.BaseUrl));
         }
 
+        [AllureTag("Negative tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
         [Test]
         public void LoginAsFakeUser()
         {
-            var message = new LoginPage().OpenPage().LoginAsFakeUser();
+            var message = new LoginPage()
+                .OpenPage()
+                .LoginAsFakeUser();
 
             Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
         }
 
+        [AllureTag("Negative tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
         [Test]
-        public void LoginWithEmptyInputs()
+        public void LoginWithEmptyUser()
         {
-            var loginPage = new LoginPage().OpenPage();
+            var user = UserBuilder.EmptyUser();
+            var loginPage = new LoginPage()
+                .OpenPage();
 
-            loginPage.TryToLogin(UserBuilder.EmptyUser());
+            loginPage.TryToLogin(user);
             Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
 
         }
