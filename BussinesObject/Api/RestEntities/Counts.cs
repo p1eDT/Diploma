@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BussinesObject.Api.RestEntities
 {
-    internal class Class1
+    public class Counts
     {
+        public int Cases { get; set; }
+        public int Suites { get; set; }
+        public int Milestones { get; set; }
     }
 }

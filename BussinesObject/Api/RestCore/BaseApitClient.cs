@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using Core.Configuration;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace Api.RestCore
 {
@@ -11,16 +13,17 @@ namespace Api.RestCore
             var option = new RestClientOptions(url)
             {
                 MaxTimeout = 10000,
-                ThrowOnAnyError = false
+                ThrowOnAnyError = false,
+                Authenticator= AddToken()
             };
 
             restClient = new RestClient(option);
             restClient.AddDefaultHeader("Content-Type", "application/json");
         }
 
-        public void AddToken(string token)
+        public JwtAuthenticator AddToken()
         {
-            restClient.AddDefaultHeader("Token", token);
+            return new JwtAuthenticator(AppConfiguration.Api.Token);
         }
 
         public RestResponse Execute(RestRequest request)
