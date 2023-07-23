@@ -21,9 +21,15 @@ namespace Api.RestCore
             restClient.AddDefaultHeader("Content-Type", "application/json");
         }
 
-        public JwtAuthenticator AddToken()
+        public JwtAuthenticator AddToken(string? token=null)
         {
-            return new JwtAuthenticator(AppConfiguration.Api.Token);
+            token??=AddBasicToken();
+            return new JwtAuthenticator(token);
+        }
+
+        public string AddBasicToken()
+        {
+            return AppConfiguration.Api.Token;
         }
 
         public RestResponse Execute(RestRequest request)

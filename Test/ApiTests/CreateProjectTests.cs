@@ -32,7 +32,7 @@ namespace Test.ApiTests
         {
             var response = projectService.GetProjects();
             Console.WriteLine(response.StatusCode);
-            
+            Console.WriteLine(response.Content.ToString());
         }
     }
 }
