@@ -5,13 +5,15 @@ namespace Core.Configuration
     public class AppConfiguration
     {
         public static BrowserConfiguration Browser => BindConfiguration<BrowserConfiguration>();
+        public static ApiConfiguration Api => BindConfiguration<ApiConfiguration>();
+
         private static IConfigurationRoot configurationRoot;
 
         static AppConfiguration()
         {
             configurationRoot = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(path: "appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
         }
 

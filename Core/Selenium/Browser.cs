@@ -8,6 +8,7 @@ namespace Core.Selenium
     {
         private static readonly ThreadLocal<Browser> BrowserInstances = new();
         public static Browser Instance => GetBrowser();
+
         private IWebDriver driver;
         public IWebDriver? Driver { get { return driver; } }
 
@@ -79,6 +80,13 @@ namespace Core.Selenium
             {
                 return null;
             }
+        }
+
+        public string getElementXPath(WebElement element)
+        {
+            return (string)ExecuteScript(
+                "gPt=function(c){if(c.id!==''){return'id(\"'+c.id+'\")'}if(c===document.body){return c.tagName}var a=0;var e=c.parentNode.childNodes;for(var b=0;b<e.length;b++){var d=e[b];if(d===c){return gPt(c.parentNode)+'/'+c.tagName+'['+(a+1)+']'}if(d.nodeType===1&&d.tagName===c.tagName){a++}}};return gPt(arguments[0]).toLowerCase();",
+                element);
         }
     }
 }

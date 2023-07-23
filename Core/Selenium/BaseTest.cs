@@ -21,13 +21,19 @@ namespace Core.Selenium
         [TearDown]
         public void TearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                Screenshot screenshot = ((ITakesScreenshot)Browser.Instance.Driver).GetScreenshot();
-                byte[] bytes = screenshot.AsByteArray;
-                allure.AddAttachment("Screenshot", "image/png", bytes);
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    Screenshot screenshot = ((ITakesScreenshot)Browser.Instance.Driver).GetScreenshot();
+                    byte[] bytes = screenshot.AsByteArray;
+                    allure.AddAttachment("Screenshot", "image/png", bytes);
+                }
             }
-
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message, ex.StackTrace);
+            }
             Browser.Instance.CloseBrowser();
         }
     }
