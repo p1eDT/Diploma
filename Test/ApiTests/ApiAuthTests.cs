@@ -9,12 +9,14 @@ namespace Test.ApiTests
     {
         protected ProjectService projectService;
         protected ApiProjectSteps apiProjectSteps;
+        protected UserService userService;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             projectService = new ProjectService();
             apiProjectSteps = new ApiProjectSteps();
+            userService = new UserService();
         }
 
         //[OneTimeSetUp]
