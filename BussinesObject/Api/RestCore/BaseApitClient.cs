@@ -1,4 +1,5 @@
-﻿using Core.Configuration;
+﻿using BussinesObject.Api.RestEntities;
+using Core.Configuration;
 using Newtonsoft.Json;
 using NLog;
 using RestSharp;
@@ -37,26 +38,11 @@ namespace Api.RestCore
             return AppConfiguration.Api.Token;
         }
 
-        //public RestResponse Execute(RestRequest request)
-        //{
-        //    logger.Info("request:"+request);
-        //    var response = restClient.Execute(request);
-        //    logger.Info("respons:"+response.Content.Normalize());
-        //    return response;
-        //}
-
-        //public T Execute<T>(RestRequest request)
-        //{
-        //    logger.Info("request:" + request);
-        //    var response = restClient.Execute<T>(request);
-        //    logger.Info("respons:" + response.Content.Normalize());
-        //    return response.Data;
-        //}
-
         public virtual RestResponse Execute(RestRequest request)
         {
             RestResponse response = null;
-            var stopWatch = new Stopwatch();
+
+            var stopWatch = new Stopwatch();  
 
             try
             {

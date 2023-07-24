@@ -24,7 +24,7 @@ namespace Test.ApiTests
             var userResponse = userService.CreateUser(userModel);
 
             Console.WriteLine(userResponse.Content);
-            //Assert.IsTrue(userResponse.StatusCode.Equals(HttpStatusCode.OK));
+            Assert.IsTrue(userResponse.StatusCode.Equals(HttpStatusCode.Created));
 
         }
 

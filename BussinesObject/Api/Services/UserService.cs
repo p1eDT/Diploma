@@ -1,6 +1,7 @@
 ﻿using Api.RestCore;
 using BussinesObject.Api.RestEntities;
 using Core.Configuration;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace BussinesObject.Api.Services
@@ -30,8 +31,9 @@ namespace BussinesObject.Api.Services
 
         public RestResponse CreateUser(CreateUserModel user)
         {
+            var body=JsonConvert.SerializeObject(user);
             var request = new RestRequest(UserEndpoint, Method.Post);
-            request.AddBody(user);
+            request.AddBody(body);
             return apiClient.Execute(request);
         }
     }
