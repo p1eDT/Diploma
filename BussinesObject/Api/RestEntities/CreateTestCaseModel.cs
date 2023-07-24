@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BussinesObject.Api.Services
+namespace BussinesObject.Api.RestEntities
 {
     public class CreateTestCaseModel
     {

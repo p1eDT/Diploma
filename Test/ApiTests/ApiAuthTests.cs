@@ -16,11 +16,5 @@ namespace Test.ApiTests
             projectService = new ProjectService();
             apiProjectSteps = new ApiProjectSteps();
         }
-
-        //[OneTimeSetUp]
-        //public void InitialService()
-        //{
-        //    apiClient.AddToken(AppConfiguration.Api.Token);
-        //}
     }
 }

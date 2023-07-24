@@ -3,13 +3,17 @@ using BussinesObject.Api.RestEntities;
 using BussinesObject.Api.Services;
 using System.Net;
 using NUnit.Framework;
+using NUnit.Allure.Attributes;
 
 namespace Test.ApiTests
 {
     public class CreateProjectTests:ApiAuthTests
     {
         [Test]
-
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
+        [AllureSubSuite("API")]
         public void CreateProject()
         {
             var projectModel = new CreateProjectModel()
@@ -24,10 +28,13 @@ namespace Test.ApiTests
 
             Console.WriteLine(projectResponse.Content);
             Assert.IsTrue(projectResponse.StatusCode.Equals(HttpStatusCode.OK));
-
         }
 
         [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
+        [AllureSubSuite("API")]
         public void GetProjects()
         {
             var response = projectService.GetProjects();

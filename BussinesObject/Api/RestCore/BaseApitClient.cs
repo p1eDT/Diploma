@@ -1,12 +1,17 @@
 ﻿using Core.Configuration;
+using Newtonsoft.Json;
+using NLog;
 using RestSharp;
 using RestSharp.Authenticators;
+using System.Diagnostics;
 
 namespace Api.RestCore
 {
     public class BaseApiClient
     {
         private RestClient restClient;
+
+        protected static Logger logger = LogManager.GetCurrentClassLogger();
 
         public BaseApiClient(string url)
         {
@@ -32,16 +37,105 @@ namespace Api.RestCore
             return AppConfiguration.Api.Token;
         }
 
-        public RestResponse Execute(RestRequest request)
+        //public RestResponse Execute(RestRequest request)
+        //{
+        //    logger.Info("request:"+request);
+        //    var response = restClient.Execute(request);
+        //    logger.Info("respons:"+response.Content.Normalize());
+        //    return response;
+        //}
+
+        //public T Execute<T>(RestRequest request)
+        //{
+        //    logger.Info("request:" + request);
+        //    var response = restClient.Execute<T>(request);
+        //    logger.Info("respons:" + response.Content.Normalize());
+        //    return response.Data;
+        //}
+
+        public virtual RestResponse Execute(RestRequest request)
         {
-            var response = restClient.Execute(request);
-            return response;
+            RestResponse response = null;
+            var stopWatch = new Stopwatch();
+
+            try
+            {
+                stopWatch.Start();
+                response = restClient.Execute(request);
+                stopWatch.Stop();
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                logger.Error($"Failed to execute {e}");
+            }
+            finally
+            {
+                LogRequest(request, response, stopWatch.ElapsedMilliseconds);
+            }
+
+            return null;
         }
 
-        public T Execute<T>(RestRequest request)
+        public virtual T Execute<T>(RestRequest request) where T : new()
         {
-            var response = restClient.Execute<T>(request);
-            return response.Data;
+            RestResponse response = null;
+            var stopWatch = new Stopwatch();
+
+            try
+            {
+                stopWatch.Start();
+                response = restClient.Execute(request);
+                stopWatch.Stop();
+
+                var returnType = JsonConvert.DeserializeObject<T>(response.Content);
+                return returnType;
+            }
+            catch (Exception e)
+            {
+                logger.Error($"Failed to execute {e}");
+            }
+            finally
+            {
+                LogRequest(request, response, stopWatch.ElapsedMilliseconds);
+            }
+
+            return default(T);
+        }
+
+        private void LogRequest(RestRequest request, RestResponse response, long durationMs)
+        {
+            logger.Info(() =>
+            {
+                var requestToLog = new
+                {
+                    resource = request.Resource,
+                    parameters = request.Parameters.Select(parameter => new
+                    {
+                        name = parameter.Name,
+                        value = parameter.Value,
+                        type = parameter.Type.ToString()
+                    }),
+                    method = request.Method.ToString(),
+                    uri = restClient.BuildUri(request),
+                };
+
+                var responseToLog = new
+                {
+                    statusCode = response.StatusCode,
+                    content = response.Content,
+                    headers = response.Headers,
+                    responseUri = response.ResponseUri,
+                    errorMessage = response.ErrorMessage,
+                };
+
+                return string.Format("Request completed in {0} ms\n" +
+                    "Request: {1}\n" +
+                    "Response: {2}",
+                    durationMs, JsonConvert.SerializeObject(requestToLog),
+                    JsonConvert.SerializeObject(responseToLog));
+            });
         }
     }
 }

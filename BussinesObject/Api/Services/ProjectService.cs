@@ -15,7 +15,6 @@ namespace BussinesObject.Api.Services
         public RestResponse GetProjects()
         {
             var request = new RestRequest(ProjectEndpoint);
-
             var response = apiClient.Execute(request);
             return response;
         }
@@ -23,7 +22,6 @@ namespace BussinesObject.Api.Services
         public RestResponse GetProjectByCode(string code)
         {
             var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
-
             var response = apiClient.Execute(request);
             return response;
         }
