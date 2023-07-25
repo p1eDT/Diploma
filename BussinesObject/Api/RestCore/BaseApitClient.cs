@@ -118,8 +118,8 @@ namespace Api.RestCore
 
                 return string.Format("Request completed in {0} ms\n" +
                     "Request: {1}\n" +
-                    "Response: {2}",
-                    durationMs, JsonConvert.SerializeObject(requestToLog),
+                "Response: {2}",
+                    durationMs, System.Text.Json.JsonSerializer.Serialize(requestToLog),//JsonConvert.SerializeObject(requestToLog),
                     JsonConvert.SerializeObject(responseToLog));
             });
         }

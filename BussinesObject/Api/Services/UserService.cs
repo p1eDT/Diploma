@@ -31,9 +31,10 @@ namespace BussinesObject.Api.Services
 
         public RestResponse CreateUser(CreateUserModel user)
         {
-            var body=JsonConvert.SerializeObject(user);
+            logger.Info(this.GetType().Name+" User:" +System.Text.Json.JsonSerializer.Serialize(user));
+            //var body=JsonConvert.SerializeObject(user);
             var request = new RestRequest(UserEndpoint, Method.Post);
-            request.AddBody(body);
+            request.AddBody(user);
             return apiClient.Execute(request);
         }
     }
