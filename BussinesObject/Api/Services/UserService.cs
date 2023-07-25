@@ -21,7 +21,7 @@ namespace BussinesObject.Api.Services
             return response;
         }
 
-        public RestResponse GetUserById(string userId)
+        public RestResponse GetUserById(int userId)
         {
             var request = new RestRequest(UserByIdEndpoint).AddUrlSegment("userId", userId);
 
@@ -36,6 +36,13 @@ namespace BussinesObject.Api.Services
             var request = new RestRequest(UserEndpoint, Method.Post);
             request.AddBody(body);
             return apiClient.Execute(request);
+        }
+
+        public RestResponse DeleteUser(int userId)
+        {
+            var request = new RestRequest(UserByIdEndpoint, Method.Delete).AddUrlSegment("userId", userId);
+            var response = apiClient.Execute(request);
+            return response;
         }
     }
 }

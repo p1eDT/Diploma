@@ -22,7 +22,7 @@ namespace BussinesObject.Api.RestEntities
         [JsonProperty("password_confirmation")]
         public string PasswordConfirmation { get; set; }
 
+        [JsonProperty("admin")]
         public bool Admin { get; set; }
-        public Array Teams { get; set; }
     }
 }
