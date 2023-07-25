@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Selenium;
 using Core.Selenium.Elements;
+using NLog;
 using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
@@ -25,6 +26,8 @@ namespace BussinesObject.UI.Pages
 
         public void TryToLogin(UserModel userModel)
         {
+            Logger.Info("Try to login by {@value}", userModel);
+
             EmailInput.GetElement().SendKeys(userModel.Name);
             PasswordInput.GetElement().SendKeys(userModel.Password);
             LoginButton.GetElement().Click();

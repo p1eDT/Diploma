@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
-    public class TestCasesPage : BasePage,IDelete
+    public class TestCasesPage : HomePage,IDelete
     {
         private string url = $"{BaseUrl}web-ap/design/test-suites";
         Button AddTestCaseButton = ButtonBuilder.AddButton();

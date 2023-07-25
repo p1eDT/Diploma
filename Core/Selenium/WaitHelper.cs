@@ -19,5 +19,10 @@ namespace Core.Selenium
         {
             new WebDriverWait(driver, TimeSpan.FromSeconds(time)).Until(element => element.FindElements(by).Count == count);
         }
+
+        public static void WaitHideElement(IWebDriver driver,By by, int time=5)
+        {
+            WaitElements(driver, by, 0, time);
+        }
     }
 }

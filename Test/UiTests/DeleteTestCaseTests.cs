@@ -1,4 +1,5 @@
 ﻿using BussinesObject.UI.Pages;
+using Core;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
@@ -18,18 +19,22 @@ namespace Test.UiTests
         [AllureSuite("TestMonitor")]
         public void DeleteTCTest()
         {
-            var testCaseForDelete = "dsf";
+            var testCaseNameForDelete = "Change Account using an Invalid New Password";
+            var testCaseCodeForDelete = "TC15";
+            var testSuite = "Feature: My Account";
+            logger.Message($"Test case for delete: {testCaseNameForDelete}");
 
             var cases = new LoginPage()
                         .OpenPage()
                         .Login()
-                        .SelectProject("Test1Project")
+                        .SelectProject()
                         .OpenSuites()
-                        .OpenTestSuite("proba")
-                        .DeleteTestCase("proba")
-                        .DeleteTestCase("TC29");
+                        .OpenTestSuite(testSuite)
+                        .DeleteTestCase(testCaseNameForDelete)
+                        .DeleteTestCase(testCaseCodeForDelete);
 
-            Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCaseForDelete));
+            Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCaseNameForDelete));
+            Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCaseCodeForDelete));
         }
     }
 }

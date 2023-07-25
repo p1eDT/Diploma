@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NLog;
+using OpenQA.Selenium;
 
 namespace Core.Selenium.Elements
 {
@@ -21,6 +22,8 @@ namespace Core.Selenium.Elements
             if ((selected || selectedByAttribute) != flag)
             {
                 this.GetElement().SendKeys(Keys.Space);
+                Browser.Logger.Info("Element {@element} has been {checkState}", this.ToString(), (flag ? "checked": "unchecked"));
+                Browser.Logger.Debug("Element {@element} has been {@checkState}", element, (flag ? "checked": "unchecked"));
             }
         }
     }

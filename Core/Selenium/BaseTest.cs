@@ -1,4 +1,5 @@
 ﻿using Allure.Commons;
+using NLog;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -7,15 +8,16 @@ using OpenQA.Selenium;
 namespace Core.Selenium
 {
     [AllureNUnit]
-    [Parallelizable(ParallelScope.All)]
     public class BaseTest
     {
         private AllureLifecycle allure;
+        protected TestLog logger;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             allure = AllureLifecycle.Instance;
+            logger = new TestLog();
         }
 
         [TearDown]

@@ -2,9 +2,11 @@
 using Core.Configuration;
 using Newtonsoft.Json;
 using NLog;
+using NUnit.Framework;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Api.RestCore
 {
@@ -20,16 +22,16 @@ namespace Api.RestCore
             {
                 MaxTimeout = 10000,
                 ThrowOnAnyError = false,
-                Authenticator= AddToken()
+                Authenticator = AddToken()
             };
 
             restClient = new RestClient(option);
             restClient.AddDefaultHeader("Content-Type", "application/json");
         }
 
-        public JwtAuthenticator AddToken(string? token=null)
+        public JwtAuthenticator AddToken(string? token = null)
         {
-            token??=AddBasicToken();
+            token ??= AddBasicToken();
             return new JwtAuthenticator(token);
         }
 
@@ -42,7 +44,7 @@ namespace Api.RestCore
         {
             RestResponse response = null;
 
-            var stopWatch = new Stopwatch();  
+            var stopWatch = new Stopwatch();
 
             try
             {
@@ -119,7 +121,7 @@ namespace Api.RestCore
                 return string.Format("Request completed in {0} ms\n" +
                     "Request: {1}\n" +
                 "Response: {2}",
-                    durationMs, System.Text.Json.JsonSerializer.Serialize(requestToLog),//JsonConvert.SerializeObject(requestToLog),
+                    durationMs, System.Text.Json.JsonSerializer.Serialize(requestToLog),
                     JsonConvert.SerializeObject(responseToLog));
             });
         }

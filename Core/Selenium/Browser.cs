@@ -1,4 +1,5 @@
 ﻿using Core.Configuration;
+using NLog;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 
@@ -8,6 +9,8 @@ namespace Core.Selenium
     {
         private static readonly ThreadLocal<Browser> BrowserInstances = new();
         public static Browser Instance => GetBrowser();
+
+        public static Logger Logger = LogManager.GetCurrentClassLogger();
 
         private IWebDriver driver;
         public IWebDriver? Driver { get { return driver; } }
@@ -39,6 +42,7 @@ namespace Core.Selenium
         public void NavigateToUrl(string url)
         {
             driver.Navigate().GoToUrl(url);
+            Logger.Info("Navigate to url: {0}", url);
         }
 
         public void AcceptAllert()
@@ -69,12 +73,12 @@ namespace Core.Selenium
                 .Perform();
         }
 
-        public object ExecuteScript(string scipt, object argument = null)
+        public object ExecuteScript(string script, object argument = null)
         {
             try
             {
-
-                return ((IJavaScriptExecutor)driver).ExecuteScript(scipt, argument);
+                Logger.Debug($"Execute script: {script}");
+                return ((IJavaScriptExecutor)driver).ExecuteScript(script, argument);
             }
             catch (Exception)
             {

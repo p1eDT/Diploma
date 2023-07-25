@@ -6,7 +6,6 @@ using NUnit.Allure.Core;
 namespace Api.Tests
 {
     [AllureNUnit]
-    [Parallelizable(ParallelScope.All)]
     public class BaseApiTest
     {
         protected BaseApiClient apiClient;

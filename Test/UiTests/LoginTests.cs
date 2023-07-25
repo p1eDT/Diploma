@@ -1,5 +1,6 @@
 ﻿using BussinesObject;
 using BussinesObject.UI.Pages;
+using Core;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
