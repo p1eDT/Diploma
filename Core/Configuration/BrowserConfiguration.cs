@@ -1,5 +1,4 @@
-﻿
-namespace Core.Configuration
+﻿namespace Core.Configuration
 {
     public class BrowserConfiguration : IConfiguration
     {

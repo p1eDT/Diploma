@@ -29,7 +29,7 @@ namespace BussinesObject.UI.Pages
         {
             Logger.Info("Try to login by {@value}", userModel);
 
-            EmailInput.GetElement().SendKeys(userModel.Name);
+            EmailInput.GetElement().SendKeys(userModel.Email);
             PasswordInput.GetElement().SendKeys(userModel.Password);
             LoginButton.GetElement().Click();
         }

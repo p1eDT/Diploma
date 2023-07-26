@@ -10,7 +10,7 @@ namespace BussinesObject
         {
             return new UserModel
             (
-                name: AppConfiguration.Browser.ListOfUsers[0].Name,
+                email: AppConfiguration.Browser.ListOfUsers[0].Email,
                 password: AppConfiguration.Browser.ListOfUsers[0].Password
             );
         }
@@ -20,7 +20,7 @@ namespace BussinesObject
             Faker faker = new Faker();
             return new UserModel
             (
-                name: faker.Internet.Email(),
+                email: faker.Internet.Email(),
                 password: faker.Internet.Password()
              );
         }
@@ -29,7 +29,7 @@ namespace BussinesObject
         {
             return new UserModel
             (
-                name: "",
+                email: "",
                 password: ""
              );
         }

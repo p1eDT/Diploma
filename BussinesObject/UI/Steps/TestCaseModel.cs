@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace BussinesObject.UI.Steps
 {
     public class TestCaseModel
     {
