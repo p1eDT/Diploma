@@ -16,7 +16,6 @@ namespace Test.UiTests
         public void LoginUser()
         {
             var homePage = new LoginPage()
-                .OpenPage()
                 .Login();
 
             Assert.That(homePage.BrandUrl(), Is.EqualTo(BasePage.BaseUrl));
@@ -29,7 +28,6 @@ namespace Test.UiTests
         public void LoginAsFakeUser()
         {
             var message = new LoginPage()
-                .OpenPage()
                 .LoginAsFakeUser();
 
             Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
@@ -42,12 +40,10 @@ namespace Test.UiTests
         public void LoginWithEmptyUser()
         {
             var user = UserBuilder.EmptyUser();
-            var loginPage = new LoginPage()
-                .OpenPage();
-
+            var loginPage = new LoginPage();
             loginPage.TryToLogin(user);
-            Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
 
+            Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
         }
     }
 }

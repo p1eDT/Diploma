@@ -37,9 +37,9 @@ namespace Test.ApiTests
         [AllureSubSuite("API")]
         public void GetProjects()
         {
+            logger.Message("");
             var response = projectService.GetProjects();
-            Console.WriteLine(response.StatusCode);
-            Console.WriteLine(response.Content.ToString());
+            Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK));
         }
     }
 }

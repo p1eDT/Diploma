@@ -13,10 +13,17 @@ namespace Core
 {
     public class TestLog
     {
+        public static Logger Logger;
+
+        public TestLog()
+        {
+            Logger = LogManager.GetCurrentClassLogger();
+        }
+
         public void Message(string message)
         {
             var prefix = GetCallerTestDescription();
-            Browser.Logger.Info("[{0}] {1}", prefix, message);
+            Logger.Info("[{0}] {1}", prefix, message);
         }
 
         private string GetCallerTestDescription()

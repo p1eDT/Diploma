@@ -16,10 +16,16 @@ namespace Core.Selenium
         Faker faker = new Faker();
 
         [OneTimeSetUp]
-        public void SetUp()
+        public void OneTimeSetUp()
         {
             allure = AllureLifecycle.Instance;
             logger = new TestLog();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            TestLog.Logger.Info($"[{TestContext.CurrentContext.Test.Name}] start test");
         }
 
         [TearDown]
@@ -38,7 +44,11 @@ namespace Core.Selenium
             {
                 Console.WriteLine(ex.Message, ex.StackTrace);
             }
+
+            TestLog.Logger.Info($"[{TestContext.CurrentContext.Test.Name}] end test");
+
             Browser.Instance.CloseBrowser();
+
         }
     }
 }

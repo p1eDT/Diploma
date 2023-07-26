@@ -16,6 +16,7 @@ namespace BussinesObject.UI.Pages
 
         public LoginPage()
         {
+            OpenPage();
         }
 
         public MyProjectsPage Login()
