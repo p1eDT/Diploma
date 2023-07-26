@@ -1,4 +1,5 @@
 ﻿using Api.BusinessObject.Steps;
+using Api.TestCase.Steps;
 using Api.Tests;
 using BussinesObject.Api.Services;
 using Core.Configuration;
@@ -11,6 +12,8 @@ namespace Test.ApiTests
         protected ApiProjectSteps apiProjectSteps;
         protected UserService userService;
         protected ApiUserSteps apiUserSteps;
+        protected TestCaseService testCaseService;
+        protected ApiTestCaseSteps apiTestCaseSteps;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -19,6 +22,8 @@ namespace Test.ApiTests
             apiProjectSteps = new ApiProjectSteps();
             userService = new UserService();
             apiUserSteps = new ApiUserSteps();
+            testCaseService = new TestCaseService();
+            apiTestCaseSteps = new ApiTestCaseSteps();
         }
     }
 }

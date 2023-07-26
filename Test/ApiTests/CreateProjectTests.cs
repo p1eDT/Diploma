@@ -1,9 +1,9 @@
 ﻿using Bogus;
 using BussinesObject.Api.RestEntities;
-using BussinesObject.Api.Services;
 using System.Net;
 using NUnit.Framework;
 using NUnit.Allure.Attributes;
+using BussinesObject.Api.Utils;
 
 namespace Test.ApiTests
 {
@@ -37,7 +37,6 @@ namespace Test.ApiTests
         [AllureSubSuite("API")]
         public void GetProjects()
         {
-            logger.Message("");
             var response = projectService.GetProjects();
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK));
         }

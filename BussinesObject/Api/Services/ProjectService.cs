@@ -42,7 +42,7 @@ namespace BussinesObject.Api.Services
         public Project GetProjectByCode<ProjectType>(string code) where ProjectType : Project
         {
             var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
-            return apiClient.Execute<CommonResultResponse<Project>>(request).Result;
+            return apiClient.Execute<CommonResultResponse<Project>>(request).Data;
         }
     }
 }

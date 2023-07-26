@@ -42,5 +42,13 @@ namespace BussinesObject.UI.Pages
             //*[contains(text(),'{name}')]/ancestor::tr//td[@data-label='type']
             return Driver.FindElement(By.XPath($"//div[contains(text(),'{name}')]//ancestor::tr//td[@data-label='Code']//strong")).Text;
         }
+
+        public string GetTestNameByCode(string code)
+        {
+            //todo так можем получать любой элемент в таблице из любого 
+            // кроме чекбокса и заголовка (th). Пустой type вернет правый контрол с доп действиями
+            //*[contains(text(),'{name}')]/ancestor::tr//td[@data-label='type']
+            return Driver.FindElement(By.XPath($"//div[contains(text(),'{code}')]//ancestor::tr//td[@data-label='Name']//strong")).Text;
+        }
     }
 }

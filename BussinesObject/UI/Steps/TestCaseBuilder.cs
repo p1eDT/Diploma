@@ -5,7 +5,7 @@ namespace BussinesObject.UI.Steps
 {
     public class TestCaseBuilder
     {
-        public TestCaseModel GetRandomTestCase(string testSuite)
+        public TestCaseModel GetRandomTestCaseModel(string testSuite)
         {
             Faker faker = new Faker();
 

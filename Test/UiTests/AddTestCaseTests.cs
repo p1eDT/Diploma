@@ -22,7 +22,7 @@ namespace Test.UiTests
         public void CreateTestCaseTest()
         {
             string testSuiteName = "TestSuiteTest3";
-            var testCase = new TestCaseBuilder().GetRandomTestCase(testSuiteName);
+            var testCase = new TestCaseBuilder().GetRandomTestCaseModel(testSuiteName);
 
             new TestSuitesPage().OpenTestSuite(testCase.TestSuiteName)
                 .OpenNewTestCaseModal()
@@ -42,7 +42,7 @@ namespace Test.UiTests
         public void DurationValidTest()
         {
             string testSuiteName = "TestSuiteTest3";
-            var testCase = new TestCaseBuilder().GetRandomTestCase(testSuiteName);
+            var testCase = new TestCaseBuilder().GetRandomTestCaseModel(testSuiteName);
 
             var testCaseModal = new TestSuitesPage().OpenTestSuite(testSuiteName).OpenNewTestCaseModal();
 

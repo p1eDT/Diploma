@@ -14,7 +14,7 @@ namespace Api.BusinessObject.Steps
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsNotNull(response.Content);
 
-            return JsonConvert.DeserializeObject<CommonResultResponse<Project>>(response.Content).Result;
+            return JsonConvert.DeserializeObject<CommonResultResponse<Project>>(response.Content).Data;
         }
     }
 }

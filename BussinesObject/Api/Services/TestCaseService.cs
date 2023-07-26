@@ -1,19 +1,16 @@
 ﻿using Api.RestCore;
 using BussinesObject.Api.RestEntities;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Configuration;
+using Newtonsoft.Json;
 
 namespace BussinesObject.Api.Services
 {
-    internal class TestCaseService:BaseService
+    public class TestCaseService:BaseService
     {
         public string TestCaseEndpoint = "test-cases";
         public string TestCaseById = "test-cases/{testCaseId}";
-        public TestCaseService(string url) : base(url)
+        public TestCaseService() : base(AppConfiguration.Api.BaseUrl)
         {
         }
 
@@ -25,9 +22,9 @@ namespace BussinesObject.Api.Services
             return response;
         }
 
-        public RestResponse GetTestCaseByCode(string code)
+        public RestResponse GetTestCaseById(int id)
         {
-            var request = new RestRequest(TestCaseById).AddUrlSegment("testCaseId", code);
+            var request = new RestRequest(TestCaseById).AddUrlSegment("testCaseId", id);
 
             var response = apiClient.Execute(request);
             return response;
@@ -35,8 +32,11 @@ namespace BussinesObject.Api.Services
 
         public RestResponse CreateTestCase(CreateTestCaseModel TestCase)
         {
+            logger.Info(this.GetType().Name + " TestCase:" + System.Text.Json.JsonSerializer.Serialize(TestCase));
+
+            var body = JsonConvert.SerializeObject(TestCase);
             var request = new RestRequest(TestCaseEndpoint, Method.Post);
-            request.AddBody(TestCase);
+            request.AddBody(body);
             return apiClient.Execute(request);
         }
 
@@ -46,10 +46,10 @@ namespace BussinesObject.Api.Services
             return apiClient.Execute(request);
         }
 
-        public TestCase GetTestCaseByCode<TestCaseType>(string code) where TestCaseType : TestCase
+        public TestCaseModel GetTestCaseByCode<TestCaseType>(string code) where TestCaseType : TestCaseModel
         {
             var request = new RestRequest(TestCaseById).AddUrlSegment("code", code);
-            return apiClient.Execute<CommonResultResponse<TestCase>>(request).Result;
+            return apiClient.Execute<CommonResultResponse<TestCaseModel>>(request).Data;
         }
     }
 }

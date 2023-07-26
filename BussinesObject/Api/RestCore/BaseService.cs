@@ -1,4 +1,4 @@
-﻿using Api.RestCore;
+﻿using Bogus;
 using NLog;
 
 namespace Api.RestCore
@@ -8,6 +8,8 @@ namespace Api.RestCore
         protected BaseApiClient apiClient;
 
         protected static Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected static Faker faker = new Faker();
 
         public BaseService(string url)
         {

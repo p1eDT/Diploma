@@ -4,18 +4,10 @@ namespace BussinesObject.Api.RestEntities
 {
     public class CreateTestCaseModel
     {
-        [JsonProperty("test_suite_id")]
+        [JsonProperty("test_suite_id", Required = Required.Always)]
         public int TestSuiteId { get; set; }
+
+        [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
-        public int Duration { get; set; }
-        public bool Draft { get; set; }
-
-        [JsonProperty("expected_result")]
-        public string ExpectedResult { get; set; }
-
-        [JsonProperty("test_data")]
-        public string TestData { get; set; }
-        public string Preconditions { get; set; }
-        public List<string> Instructions { get; set; }
     }
 }
