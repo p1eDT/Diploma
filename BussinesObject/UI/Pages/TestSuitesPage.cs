@@ -1,12 +1,10 @@
-﻿using Core.Selenium;
-using Core.Selenium.Elements;
+﻿using Core.Selenium.Elements;
 using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
     public class TestSuitesPage : HomePage, IDelete
     {
-        private string url = $"{BaseUrl}web-ap/design/test-suites";
         Button AddTestSuiteButton = ButtonBuilder.AddButton();
 
         public TestSuitesPage()
@@ -15,7 +13,7 @@ namespace BussinesObject.UI.Pages
 
         public override TestSuitesPage OpenPage()
         {
-            Browser.Instance.NavigateToUrl(url);
+            new MyProjectsPage().OpenPage().SelectProject().OpenSuites();
 
             return this;
         }
@@ -29,6 +27,8 @@ namespace BussinesObject.UI.Pages
 
         public TestCasesPage OpenTestSuite(string nameTestSuite)
         {
+            Logger.Info("Try to open by {@value} test suite", nameTestSuite);
+            base.SearchElement(nameTestSuite);
             new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
 
             return new TestCasesPage();

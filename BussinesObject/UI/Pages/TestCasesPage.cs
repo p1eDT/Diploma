@@ -27,11 +27,6 @@ namespace BussinesObject.UI.Pages
             return new NewTestCaseModal();
         }
 
-        /// <summary>
-        /// Delete TestCase
-        /// </summary>
-        /// <param name="testCase">Name or Code</param>
-        /// <returns></returns>
         public TestCasesPage DeleteTestCase(string testCase)
         {
             var testCaseNameDeletable = this as IDelete;

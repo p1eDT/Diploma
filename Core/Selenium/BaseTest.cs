@@ -1,4 +1,5 @@
 ﻿using Allure.Commons;
+using Bogus;
 using NLog;
 using NUnit.Allure.Core;
 using NUnit.Framework;
@@ -12,6 +13,7 @@ namespace Core.Selenium
     {
         private AllureLifecycle allure;
         protected TestLog logger;
+        Faker faker = new Faker();
 
         [OneTimeSetUp]
         public void SetUp()
