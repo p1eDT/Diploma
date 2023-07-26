@@ -15,12 +15,13 @@ namespace Test.UiTests
         [AllureSuite("TestMonitor")]
         public void DeleteTSTest()
         {
-            var testSuiteForDelete = "proba";
+            var testSuiteForDelete = "ForDelete";
+            logger.Message($"Test suite for delete: {testSuiteForDelete}");
 
             var suites = new LoginPage()
                         .OpenPage()
                         .Login()
-                        .SelectProject("Test1Project")
+                        .SelectProject()
                         .OpenSuites()
                         .DeleteTestSuite(testSuiteForDelete);
 

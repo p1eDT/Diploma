@@ -22,7 +22,7 @@ namespace Core.Selenium.Elements
             if ((selected || selectedByAttribute) != flag)
             {
                 this.GetElement().SendKeys(Keys.Space);
-                Browser.Logger.Info("Element {@element} has been {checkState}", this.ToString(), (flag ? "checked": "unchecked"));
+                Browser.Logger.Info("Element {@element} has been {checkState}", element.ToString(), (flag ? "checked": "unchecked"));
                 Browser.Logger.Debug("Element {@element} has been {@checkState}", element, (flag ? "checked": "unchecked"));
             }
         }
