@@ -7,7 +7,7 @@ trigger:
 - feature
 
 pool:
-  name: 'default'
+  name: 'Alex'
 
 steps:
 - task: NuGetCommand@2
