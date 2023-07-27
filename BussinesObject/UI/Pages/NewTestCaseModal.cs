@@ -31,7 +31,7 @@ namespace BussinesObject.UI.Pages
             for (int i = 1; i < stepCount; i++)
             {
                 plusButton.ClickElementViaJs();
-                //тут надо как-то выставить задержку, либо я хз что делать. через раз не может найти элемент на следующем шаге
+
                 var input = Browser.Instance.Driver.FindElement(By.XPath("//p[@data-placeholder]/parent::div[contains(@class,'is-input')]"));
                 input.SendKeys(faker.Name.JobDescriptor());
             }

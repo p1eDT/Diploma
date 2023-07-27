@@ -9,9 +9,9 @@ namespace Test.UiTests
     {
 
         [SetUp]
-        public void SetUp()
+        public void Prepare()
         {
-            new LoginPage().OpenPage().Login().SelectProject().OpenSuites();
+            new LoginPage().Login().SelectProject().OpenSuites();
         }
 
         [Test]

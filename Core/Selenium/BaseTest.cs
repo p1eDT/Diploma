@@ -1,4 +1,6 @@
 ﻿using Allure.Commons;
+using Bogus;
+using NLog;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -7,15 +9,23 @@ using OpenQA.Selenium;
 namespace Core.Selenium
 {
     [AllureNUnit]
-    [Parallelizable(ParallelScope.All)]
     public class BaseTest
     {
         private AllureLifecycle allure;
+        protected TestLog logger;
+        Faker faker = new Faker();
 
         [OneTimeSetUp]
-        public void SetUp()
+        public void OneTimeSetUp()
         {
             allure = AllureLifecycle.Instance;
+            logger = new TestLog();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            TestLog.Logger.Info($"[{TestContext.CurrentContext.Test.Name}] start test");
         }
 
         [TearDown]
@@ -34,7 +44,11 @@ namespace Core.Selenium
             {
                 Console.WriteLine(ex.Message, ex.StackTrace);
             }
+
+            TestLog.Logger.Info($"[{TestContext.CurrentContext.Test.Name}] end test");
+
             Browser.Instance.CloseBrowser();
+
         }
     }
 }

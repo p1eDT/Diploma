@@ -30,6 +30,7 @@ namespace BussinesObject.UI.Pages
 
         public void ClickNavMenuItem(string item) 
         {
+            Logger.Info($"Try click in navigation menu to {item}");
             NavMenu.FindElement(By.LinkText(item)).Click();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Core;
 using Core.Selenium;
 using Core.Selenium.Elements;
+using NLog;
 using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
@@ -15,6 +16,7 @@ namespace BussinesObject.UI.Pages
 
         public LoginPage()
         {
+            OpenPage();
         }
 
         public MyProjectsPage Login()
@@ -25,7 +27,9 @@ namespace BussinesObject.UI.Pages
 
         public void TryToLogin(UserModel userModel)
         {
-            EmailInput.GetElement().SendKeys(userModel.Name);
+            Logger.Info("Try to login by {@value}", userModel);
+
+            EmailInput.GetElement().SendKeys(userModel.Email);
             PasswordInput.GetElement().SendKeys(userModel.Password);
             LoginButton.GetElement().Click();
         }
@@ -33,6 +37,7 @@ namespace BussinesObject.UI.Pages
         public override LoginPage OpenPage()
         {
             Browser.Instance.NavigateToUrl(BaseUrl);
+            Logger.Info("Opened Login Page");
             return this;
         }
 

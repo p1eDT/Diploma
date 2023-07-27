@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
 {
-    public class TestCasesPage : BasePage,IDelete
+    public class TestCasesPage : HomePage,IDelete
     {
         private string url = $"{BaseUrl}web-ap/design/test-suites";
         Button AddTestCaseButton = ButtonBuilder.AddButton();
@@ -27,11 +27,6 @@ namespace BussinesObject.UI.Pages
             return new NewTestCaseModal();
         }
 
-        /// <summary>
-        /// Delete TestCase
-        /// </summary>
-        /// <param name="testCase">Name or Code</param>
-        /// <returns></returns>
         public TestCasesPage DeleteTestCase(string testCase)
         {
             var testCaseNameDeletable = this as IDelete;
@@ -46,6 +41,14 @@ namespace BussinesObject.UI.Pages
             // кроме чекбокса и заголовка (th). Пустой type вернет правый контрол с доп действиями
             //*[contains(text(),'{name}')]/ancestor::tr//td[@data-label='type']
             return Driver.FindElement(By.XPath($"//div[contains(text(),'{name}')]//ancestor::tr//td[@data-label='Code']//strong")).Text;
+        }
+
+        public string GetTestNameByCode(string code)
+        {
+            //todo так можем получать любой элемент в таблице из любого 
+            // кроме чекбокса и заголовка (th). Пустой type вернет правый контрол с доп действиями
+            //*[contains(text(),'{name}')]/ancestor::tr//td[@data-label='type']
+            return Driver.FindElement(By.XPath($"//div[contains(text(),'{code}')]//ancestor::tr//td[@data-label='Name']//strong")).Text;
         }
     }
 }

@@ -11,22 +11,18 @@ namespace Core.Selenium.Elements
         public BaseElement(By locator)
         {
             this.locator = locator;
+            Browser.Logger.Debug("Element by locator: {@locator}", locator);
         }
 
         public BaseElement(string xpath)
         {
             locator = By.XPath(xpath);
+            Browser.Logger.Debug("Element xpath: {xpath}", locator);
         }
 
         public object ClickElementViaJs()
         {
             return Browser.Instance.ExecuteScript("arguments[0].click();", GetElement());
         }
-        //public string GetElementAttribute(string xpath, string attribute) 
-        //{
-        //    locator = By.XPath(xpath);
-            
-        //    return value;
-        //}
     }
 }

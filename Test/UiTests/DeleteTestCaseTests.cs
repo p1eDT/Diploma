@@ -1,35 +1,35 @@
-﻿using BussinesObject.UI.Pages;
+﻿using Api.TestCase.Steps;
+using BussinesObject.UI.Pages;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test.UiTests
 {
-    public class DeleteTestCaseTests:BaseTest
+    public class DeleteTestCaseTests : BaseTest
     {
         [Test]
         [AllureTag("Positive tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
-        public void DeleteTCTest()
+        public void DeleteTCWithCreatedTestCasesTest()
         {
-            var testCaseForDelete = "dsf";
+            var testCase = new ApiTestCaseSteps().CreateTestCase(5);
+            logger.Message($"Test case for delete: {testCase.Name}");
+
+            var testSuite = "Feature: My Account";
 
             var cases = new LoginPage()
                         .OpenPage()
                         .Login()
-                        .SelectProject("Test1Project")
+                        .SelectProject()
                         .OpenSuites()
-                        .OpenTestSuite("proba")
-                        .DeleteTestCase("proba")
-                        .DeleteTestCase("TC29");
+                        .OpenTestSuite(testSuite);
 
-            Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCaseForDelete));
+            cases.DeleteTestCase(testCase.Code);
+
+            Assert.Throws<NoSuchElementException>(() => cases.GetTestNameByCode(testCase.Code));
+            Assert.Throws<NoSuchElementException>(() => cases.GetTestCaseCode(testCase.Name));
         }
     }
 }

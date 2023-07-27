@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace BussinesObject.UI.Pages
+﻿namespace BussinesObject.UI.Pages
 {
     public class ProjectPage : HomePage
     {

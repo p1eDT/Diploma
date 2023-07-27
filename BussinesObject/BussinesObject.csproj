@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\cvin\.nuget\packages\allure.commons\3.5.0.73\contentFiles\any\netstandard2.0\allureConfig.Template.json" />
     <Content Remove="C:\Users\Администратор\.nuget\packages\allure.commons\3.5.0.73\contentFiles\any\netstandard2.0\allureConfig.Template.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Api\Utils\" />
-    <Folder Include="UI\Steps\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+	  <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

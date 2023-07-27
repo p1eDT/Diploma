@@ -17,6 +17,7 @@ namespace BussinesObject.UI.Pages
 
         public ProjectPage SelectProject(string projectName= "Web Application Starter Kit")
         {
+            Logger.Info("Select project: {project}", projectName);
             Driver.FindElement(By.XPath($"//h3[text()='{projectName}']")).Click();
             return new ProjectPage();
         }

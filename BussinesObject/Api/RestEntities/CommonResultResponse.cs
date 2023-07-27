@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BussinesObject.Api.RestEntities
 {
-    internal class CommonResultResponse<T>
+    public class CommonResultResponse<T>
     {
         public bool Status { get; set; }
-        public T Result { get; set; }
+        public T Data { get; set; }
     }
 }
