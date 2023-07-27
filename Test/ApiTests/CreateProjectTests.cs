@@ -9,27 +9,6 @@ namespace Test.ApiTests
 {
     public class CreateProjectTests:ApiAuthTests
     {
-        //[Test]
-        //[AllureTag("Positive tests")]
-        //[AllureOwner("NotNikita")]
-        //[AllureSuite("TestMonitor")]
-        //[AllureSubSuite("API")]
-        //public void CreateProject()
-        //{
-        //    var projectModel = new CreateProjectModel()
-        //    {
-        //        Title = "Test",
-        //        Code = $"{new Faker().Finance.RoutingNumber()}",
-        //        Access = "none"
-        //    };
-
-        //    var projectResponse = projectService.CreateProject(projectModel);
-        //    ProjectHandler.AddProjectCodeForDelete(projectModel.Code);
-
-        //    Console.WriteLine(projectResponse.Content);
-        //    Assert.IsTrue(projectResponse.StatusCode.Equals(HttpStatusCode.OK));
-        //}
-
         [Test]
         [AllureTag("Positive tests")]
         [AllureOwner("NotNikita")]
@@ -38,6 +17,7 @@ namespace Test.ApiTests
         public void GetProjects()
         {
             var response = projectService.GetProjects();
+            logger.Message($"Status code response: {response.StatusCode}");
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK));
         }
     }

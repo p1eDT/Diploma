@@ -1,4 +1,5 @@
 ﻿using Core.Selenium.Elements;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace BussinesObject.UI.Pages
@@ -13,15 +14,17 @@ namespace BussinesObject.UI.Pages
 
         public override TestSuitesPage OpenPage()
         {
-            new MyProjectsPage().OpenPage().SelectProject().OpenSuites();
-
+            new MyProjectsPage()
+                .OpenPage()
+                .SelectProject()
+                .OpenSuites();
+            Logger.Info("Opened test suites page");
             return this;
         }
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
             AddTestSuiteButton.ClickElementViaJs();
-
             return new NewTestSuiteModal();
         }
 
@@ -34,17 +37,27 @@ namespace BussinesObject.UI.Pages
             return new TestCasesPage();
         }
 
-        public TestSuitesPage DeleteTestSuite(string testSuiteName) 
+        public TestSuitesPage DeleteTestSuite(string testSuiteName)
         {
             var testSuitesDeletable = this as IDelete;
             testSuitesDeletable.Delete(testSuiteName);
 
-            return new TestSuitesPage(); 
+            return new TestSuitesPage();
         }
 
         public string TestSuiteByName(string name)
         {
-            return Driver.FindElement(By.LinkText(name)).Text;
+            Logger.Info("Try find test suite by name");
+            var testSuite = Driver.FindElement(By.LinkText(name)).Text;
+            if (!String.IsNullOrEmpty(testSuite))
+            {
+                Logger.Info($"Found test suite {testSuite}");
+            }
+            else
+            {
+                Assert.Fail($"Test suite not found");
+            }
+            return testSuite;
         }
     }
 }

@@ -37,6 +37,7 @@ namespace BussinesObject.UI.Pages
         public override LoginPage OpenPage()
         {
             Browser.Instance.NavigateToUrl(BaseUrl);
+            Logger.Info("Opened Login Page");
             return this;
         }
 

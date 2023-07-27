@@ -6,12 +6,14 @@ namespace BussinesObject.UI.Pages
 {
     public class HomePage : BasePage
     {
+        private By alertLocator= By.XPath("//div[@role='alert']");
+
         protected string homeUrl = $"{BaseUrl}my - projects";
         public string Alert;
 
         public HeaderNavigation Header = new HeaderNavigation();
 
-        public HomePage()
+        public HomePage():base()
         {
         }
 
@@ -23,8 +25,8 @@ namespace BussinesObject.UI.Pages
 
         public string GetAlertText() 
         {
-            Alert = Driver.FindElement(By.XPath("//div[@role='alert']")).Text;
-            return Alert; 
+            return Driver.FindElement(alertLocator).Text;
+            
         }
 
         public string BrandUrl()

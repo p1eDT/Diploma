@@ -26,5 +26,16 @@ namespace Api.TestCase.Steps
 
             return JsonConvert.DeserializeObject<CommonResultResponse<TestCaseModel>>(response.Content).Data;
         }
+
+        public new void DeleteTestCaseById(int id)
+        {
+            var response = base.DeleteTestCaseById(id);
+            logger.Info($"Delete test case with id: {id}");
+
+            Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.NoContent));
+            Assert.IsEmpty(response.Content);
+
+            logger.Info($"Test case id {id} was removed");
+        }
     }
 }

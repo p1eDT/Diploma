@@ -2,6 +2,8 @@
 using BussinesObject.Api.RestEntities;
 using BussinesObject.Api.Services;
 using Newtonsoft.Json;
+using NUnit.Framework;
+using System.Net;
 
 namespace Api.BusinessObject.Steps
 {
@@ -25,7 +27,11 @@ namespace Api.BusinessObject.Steps
                 Admin = false
             };
 
+            logger.Debug("Generate random user model {@userModel}", userModel);
             var userResponse = base.CreateUser(userModel);
+
+            Assert.IsTrue(userResponse.StatusCode.Equals(HttpStatusCode.Created));
+            logger.Info("Created random user {@userModel}", userModel);
 
             return JsonConvert.DeserializeObject<UserResponse>(userResponse.Content).data;
         }

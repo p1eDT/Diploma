@@ -40,9 +40,9 @@ namespace BussinesObject.Api.Services
             return apiClient.Execute(request);
         }
 
-        public RestResponse DeleteTestCaseByCode(string code)
+        public RestResponse DeleteTestCaseById(int id)
         {
-            var request = new RestRequest(TestCaseById, Method.Delete).AddUrlSegment("testCaseId", code);
+            var request = new RestRequest(TestCaseById, Method.Delete).AddUrlSegment("testCaseId", id);
             return apiClient.Execute(request);
         }
 
