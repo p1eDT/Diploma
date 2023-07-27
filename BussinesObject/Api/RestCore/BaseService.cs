@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bogus;
+using NLog;
 
-namespace API.Core
+namespace Api.RestCore
 {
     public class BaseService
     {
         protected BaseApiClient apiClient;
+
+        protected static Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected static Faker faker = new Faker();
 
         public BaseService(string url)
         {
