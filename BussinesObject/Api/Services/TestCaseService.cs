@@ -24,17 +24,18 @@ namespace BussinesObject.Api.Services
 
         public RestResponse GetTestCaseById(int id)
         {
-            var request = new RestRequest(TestCaseById).AddUrlSegment("testCaseId", id);
+            logger.Info("Get test case by id {id}",id);
 
+            var request = new RestRequest(TestCaseById).AddUrlSegment("testCaseId", id);
             var response = apiClient.Execute(request);
             return response;
         }
 
-        public RestResponse CreateTestCase(CreateTestCaseModel TestCase)
+        public RestResponse CreateTestCase(CreateTestCaseModel testCase)
         {
-            logger.Info(this.GetType().Name + " TestCase:" + System.Text.Json.JsonSerializer.Serialize(TestCase));
+            logger.Debug(this.GetType().Name + " TestCase: {@TestCase}", testCase);
 
-            var body = JsonConvert.SerializeObject(TestCase);
+            var body = JsonConvert.SerializeObject(testCase);
             var request = new RestRequest(TestCaseEndpoint, Method.Post);
             request.AddBody(body);
             return apiClient.Execute(request);
@@ -50,6 +51,14 @@ namespace BussinesObject.Api.Services
         {
             var request = new RestRequest(TestCaseById).AddUrlSegment("code", code);
             return apiClient.Execute<CommonResultResponse<TestCaseModel>>(request).Data;
+        }
+
+        public RestResponse UpdateTestCase(TestCaseModel testCase, int id)
+        {
+            var body = JsonConvert.SerializeObject(testCase);
+            var request = new RestRequest(TestCaseById, Method.Put).AddUrlSegment("testCaseId", id);
+            request.AddBody(body);
+            return apiClient.Execute(request);
         }
     }
 }

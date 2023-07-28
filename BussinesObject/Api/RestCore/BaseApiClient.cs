@@ -94,17 +94,26 @@ namespace Api.RestCore
 
         private void LogRequest(RestRequest request, RestResponse response, long durationMs)
         {
-            logger.Info(() =>
+            logger.Debug(() =>
             {
                 var requestToLog = new
                 {
-                    resource = request.Resource,
                     parameters = request.Parameters.Select(parameter => new
                     {
                         name = parameter.Name,
                         value = parameter.Value,
                         type = parameter.Type.ToString()
                     }),
+                };
+
+                return String.Format("Request parameters: {0}", requestToLog);
+            }); 
+
+            logger.Info(() =>
+            {
+                var requestToLog = new
+                {
+                    resource = request.Resource,
                     method = request.Method.ToString(),
                     uri = restClient.BuildUri(request),
                 };
@@ -113,17 +122,18 @@ namespace Api.RestCore
                 {
                     statusCode = response.StatusCode,
                     content = response.Content,
-                    headers = response.Headers,
+                    //headers = response.Headers,
                     responseUri = response.ResponseUri,
                     errorMessage = response.ErrorMessage,
                 };
 
                 return string.Format("Request completed in {0} ms\n" +
                     "Request: {1}\n" +
-                "Response: {2}",
+                    "Response: {2}",
                     durationMs, System.Text.Json.JsonSerializer.Serialize(requestToLog),
                     JsonConvert.SerializeObject(responseToLog));
             });
+
         }
     }
 }
