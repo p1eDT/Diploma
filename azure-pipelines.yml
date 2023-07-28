@@ -23,7 +23,7 @@ steps:
     arguments: '--configuration Debug'
 
 - task: DotNetCoreCLI@2
-  displayName: 'VsTest - testAssemblies'
+  displayName: 'Run API tests'
   inputs:
     command: test
-    arguments: --filter 'FullyQualifiedName=Test.ApiTests'
+    arguments: Test\Test.csproj --filter 'FullyQualifiedName=Test.ApiTests'
