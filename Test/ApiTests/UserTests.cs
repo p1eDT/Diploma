@@ -1,5 +1,4 @@
-﻿using Api.BusinessObject.Steps;
-using Bogus;
+﻿using Bogus;
 using BussinesObject.Api.RestEntities;
 using NUnit.Allure.Attributes;
 using System.Net;
@@ -14,7 +13,7 @@ namespace Test.ApiTests
         [AllureSuite("TestMonitor")]
         [AllureSubSuite("API")]
 
-        public void CreateUser()
+        public void CreateUserTest()
         {
             Faker faker = new Faker();
 
@@ -40,7 +39,7 @@ namespace Test.ApiTests
         [AllureSuite("TestMonitor")]
         [AllureSubSuite("API")]
 
-        public void GetSingleUser()
+        public void GetSingleUserTest()
         {
             int userId = 1;
 
@@ -57,13 +56,45 @@ namespace Test.ApiTests
         [AllureSuite("TestMonitor")]
         [AllureSubSuite("API")]
 
-        public void DeleteUser()
+        public void DeleteUserTest()
         {
             User userForDelete = apiUserSteps.CreateRandomUser();
 
             var response = userService.DeleteUser(userForDelete.Id);
 
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.NoContent));
+        }
+
+        [Test]
+        [AllureTag("Negative tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
+        [AllureSubSuite("API")]
+
+        public void GetDeletedUserTest()
+        {
+            int userId = 2;
+
+            var response = userService.DeleteUser(userId);
+
+            Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.NotFound));
+        }
+
+        [Test]
+        [AllureTag("Negative tests")]
+        [AllureOwner("Nikita")]
+        [AllureSuite("TestMonitor")]
+        [AllureSubSuite("API")]
+
+        public void AdminPrivilegesTest()
+        {
+            int userId = 8;
+
+            var grant = userService.GrantAdminPrivileges(userId);
+            Assert.IsTrue(grant.StatusCode.Equals(HttpStatusCode.OK));
+
+            var revoke = userService.RevokeAdminPrivileges(userId);
+            Assert.IsTrue(revoke.StatusCode.Equals(HttpStatusCode.OK));
         }
     }
 }

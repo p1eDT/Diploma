@@ -10,6 +10,8 @@ namespace BussinesObject.Api.Services
     {
         public string UserEndpoint = "/users";
         public string UserByIdEndpoint = "/users/{userId}";
+        public string GrantAdmin = "/user/{userId}/make-admin";
+        public string RevokeAdmin = "/user/{userId}/remove-admin";
 
         public UserService() : base(AppConfiguration.Api.BaseUrl) { }
 
@@ -41,6 +43,20 @@ namespace BussinesObject.Api.Services
         public RestResponse DeleteUser(int userId)
         {
             var request = new RestRequest(UserByIdEndpoint, Method.Delete).AddUrlSegment("userId", userId);
+            var response = apiClient.Execute(request);
+            return response;
+        }
+
+        public RestResponse GrantAdminPrivileges(int userId)
+        {
+            var request = new RestRequest(GrantAdmin, Method.Post).AddUrlSegment("userId", userId);
+            var response = apiClient.Execute(request);
+            return response;
+        }
+
+        public RestResponse RevokeAdminPrivileges(int userId)
+        {
+            var request = new RestRequest(RevokeAdmin, Method.Post).AddUrlSegment("userId", userId);
             var response = apiClient.Execute(request);
             return response;
         }

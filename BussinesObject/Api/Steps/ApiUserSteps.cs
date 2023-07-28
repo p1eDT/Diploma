@@ -2,6 +2,7 @@
 using BussinesObject.Api.RestEntities;
 using BussinesObject.Api.Services;
 using Newtonsoft.Json;
+using NUnit.Allure.Attributes;
 using NUnit.Framework;
 using System.Net;
 
@@ -13,6 +14,7 @@ namespace Api.BusinessObject.Steps
         {
         }
 
+        [AllureStep]
         public User CreateRandomUser() 
         {
             Faker faker = new Faker();
