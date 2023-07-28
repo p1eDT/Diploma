@@ -51,6 +51,7 @@ namespace Test.ApiTests
         }
 
         [Test]
+        [Category("Smoke")]
         [AllureTag("Positive tests")]
         [AllureOwner("Nikita")]
         [AllureSuite("TestMonitor")]
