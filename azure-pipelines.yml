@@ -25,6 +25,7 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Run API tests'
   inputs:
-    projects: Test\Test.csproj
     command: test
-    arguments: --filter 'FullyQualifiedName=Test.ApiTests'
+    projects: Test\Test.csproj
+    arguments: --filter "FullyQualifiedName=Test.ApiTests"
+  
