@@ -49,6 +49,7 @@ namespace BussinesObject.Api.Services
 
         public RestResponse GrantAdminPrivileges(int userId)
         {
+            logger.Info("Grant admin privileges for " + JsonConvert.DeserializeObject<UserResponse>(GetUserById(userId).Content).data.Name);
             var request = new RestRequest(GrantAdmin, Method.Post).AddUrlSegment("userId", userId);
             var response = apiClient.Execute(request);
             return response;
@@ -56,6 +57,7 @@ namespace BussinesObject.Api.Services
 
         public RestResponse RevokeAdminPrivileges(int userId)
         {
+            logger.Info("Remove admin privileges for " + JsonConvert.DeserializeObject<UserResponse>(GetUserById(userId).Content).data.Name);
             var request = new RestRequest(RevokeAdmin, Method.Post).AddUrlSegment("userId", userId);
             var response = apiClient.Execute(request);
             return response;

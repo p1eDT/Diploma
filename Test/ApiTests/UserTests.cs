@@ -81,7 +81,7 @@ namespace Test.ApiTests
         }
 
         [Test]
-        [AllureTag("Negative tests")]
+        [AllureTag("Positive tests")]
         [AllureOwner("Nikita")]
         [AllureSuite("TestMonitor")]
         [AllureSubSuite("API")]
