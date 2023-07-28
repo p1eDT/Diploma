@@ -15,7 +15,7 @@ namespace Test.ApiTests
         [AllureSubSuite("API")]
         public void CreateTestCaseWithRandomName()
         {
-            int testSuiteId = 1;
+            int testSuiteId = 42;
             var testCaseResponse = apiTestCaseSteps.CreateTestCase(testSuiteId);
             logger.Message($"Test case created with code: {testCaseResponse.Code} and name: {testCaseResponse.Name}");
 
