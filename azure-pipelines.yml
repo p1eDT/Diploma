@@ -22,12 +22,8 @@ steps:
     command: 'build'
     arguments: '--configuration Debug'
 
-- task: VSTest@3
+- task: DotNetCoreCLI@2
   displayName: 'VsTest - testAssemblies'
   inputs:
-    testAssemblyVer2: |
-     \Test.dll
-     !**\*TestAdapter.dll
-     !**\obj\
-     !\bin\**\ref\
-    testFiltercriteria: 'FullyQualifiedName=Test.ApiTests'
+    command: test
+    arguments: --filter 'FullyQualifiedName=Test.ApiTests'
