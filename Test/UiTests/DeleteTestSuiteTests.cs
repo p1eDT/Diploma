@@ -9,23 +9,23 @@ namespace Test.UiTests
 {
     public class DeleteTestSuiteTests : BaseTest
     {
-        //[Test]
-        //[AllureTag("Positive tests")]
-        //[AllureOwner("NotNikita")]
-        //[AllureSuite("TestMonitor")]
-        //public void DeleteTSTest()
-        //{
-        //    var testSuiteForDelete = "ForDelete";
-        //    logger.Message($"Test suite for delete: {testSuiteForDelete}");
+        [Test]
+        [AllureTag("Positive tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
+        public void DeleteTSTest()
+        {
+            var testSuiteForDelete = "ForDelete";
+            logger.Message($"Test suite for delete: {testSuiteForDelete}");
 
-        //    var suites = new LoginPage()
-        //                .OpenPage()
-        //                .Login()
-        //                .SelectProject()
-        //                .OpenSuites()
-        //                .DeleteTestSuite(testSuiteForDelete);
+            var suites = new LoginPage()
+                        .OpenPage()
+                        .Login()
+                        .SelectProject()
+                        .OpenSuites()
+                        .DeleteTestSuite(testSuiteForDelete);
 
-        //    Assert.Throws<NoSuchElementException>(() => suites.TestSuiteByName(testSuiteForDelete));
-        //}
+            Assert.Throws<NoSuchElementException>(() => suites.TestSuiteByName(testSuiteForDelete));
+        }
     }
 }
