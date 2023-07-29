@@ -1,5 +1,7 @@
 ﻿using Api.RestCore;
 using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.User;
+using BussinesObject.Api.RestEntities.User.User;
 using Core.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
@@ -49,7 +51,7 @@ namespace BussinesObject.Api.Services
 
         public RestResponse GrantAdminPrivileges(int userId)
         {
-            logger.Info("Grant admin privileges for " + JsonConvert.DeserializeObject<UserResponse>(GetUserById(userId).Content).data.Name);
+            logger.Info("Grant admin privileges for " + JsonConvert.DeserializeObject<CommonResultResponse<UserModel>>(GetUserById(userId).Content).Data.Name);
             var request = new RestRequest(GrantAdmin, Method.Post).AddUrlSegment("userId", userId);
             var response = apiClient.Execute(request);
             return response;
@@ -57,7 +59,7 @@ namespace BussinesObject.Api.Services
 
         public RestResponse RevokeAdminPrivileges(int userId)
         {
-            logger.Info("Remove admin privileges for " + JsonConvert.DeserializeObject<UserResponse>(GetUserById(userId).Content).data.Name);
+            logger.Info("Remove admin privileges for " + JsonConvert.DeserializeObject<CommonResultResponse<UserModel>>(GetUserById(userId).Content).Data.Name);
             var request = new RestRequest(RevokeAdmin, Method.Post).AddUrlSegment("userId", userId);
             var response = apiClient.Execute(request);
             return response;

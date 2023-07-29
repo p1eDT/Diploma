@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 
-namespace BussinesObject.Api.RestEntities
+namespace BussinesObject.Api.RestEntities.User
 {
-    public class CreateUserModel
+    public class UserModel
     {
         [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }
@@ -15,14 +18,5 @@ namespace BussinesObject.Api.RestEntities
 
         [JsonProperty("last_name")]
         public string LastName { get; set; }
-
-        [JsonProperty("password")]
-        public string Password { get; set; }
-
-        [JsonProperty("password_confirmation")]
-        public string PasswordConfirmation { get; set; }
-
-        [JsonProperty("admin")]
-        public bool Admin { get; set; }
     }
 }

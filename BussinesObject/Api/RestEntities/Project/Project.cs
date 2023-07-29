@@ -1,6 +1,6 @@
-﻿namespace BussinesObject.Api.RestEntities
+﻿namespace BussinesObject.Api.RestEntities.Project
 {
-    public class Project
+    public class ProjectModel
     {
         public string Title { get; set; }
         public string Code { get; set; }

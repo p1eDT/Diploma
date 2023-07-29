@@ -20,29 +20,29 @@ namespace Test.UiTests
             Assert.That(homePage.BrandUrl(), Is.EqualTo(BasePage.BaseUrl));
         }
 
-        //[AllureTag("Negative tests")]
-        //[AllureOwner("NotNikita")]
-        //[AllureSuite("TestMonitor")]
-        //[Test]
-        //public void LoginAsFakeUser()
-        //{
-        //    var message = new LoginPage()
-        //        .LoginAsFakeUser();
+        [AllureTag("Negative tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
+        [Test]
+        public void LoginAsFakeUser()
+        {
+            var message = new LoginPage()
+                .LoginAsFakeUser();
 
-        //    Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
-        //}
+            Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
+        }
 
-        //[AllureTag("Negative tests")]
-        //[AllureOwner("NotNikita")]
-        //[AllureSuite("TestMonitor")]
-        //[Test]
-        //public void LoginWithEmptyUser()
-        //{
-        //    var user = UserBuilder.EmptyUser();
-        //    var loginPage = new LoginPage();
-        //    loginPage.TryToLogin(user);
+        [AllureTag("Negative tests")]
+        [AllureOwner("NotNikita")]
+        [AllureSuite("TestMonitor")]
+        [Test]
+        public void LoginWithEmptyUser()
+        {
+            var user = UserBuilder.EmptyUser();
+            var loginPage = new LoginPage();
+            loginPage.TryToLogin(user);
 
-        //    Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
-        //}
+            Assert.That(loginPage.GetPopupMessage(), Is.EqualTo("Заполните это поле."));
+        }
     }
 }

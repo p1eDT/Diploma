@@ -1,5 +1,6 @@
 ﻿using Api.RestCore;
 using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.TestSuite;
 using Core.Configuration;
 using Newtonsoft.Json;
 using RestSharp;

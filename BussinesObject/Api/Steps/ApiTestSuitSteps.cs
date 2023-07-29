@@ -1,4 +1,5 @@
 ﻿using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.TestSuite;
 using BussinesObject.Api.Services;
 using Newtonsoft.Json;
 using NUnit.Framework;

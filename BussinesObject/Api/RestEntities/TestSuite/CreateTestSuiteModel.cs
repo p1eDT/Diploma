@@ -2,21 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BussinesObject.Api.RestEntities
+namespace BussinesObject.Api.RestEntities.TestSuite
 {
-    public class TestSuiteModel
+    public class CreateTestSuiteModel
     {
-        [JsonProperty("project_id")]
+        [JsonProperty("project_id", Required = Required.Always)]
         public int ProjectId { get; set; }
 
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("name")]
+        [JsonProperty("name", Required = Required.Always)]
         public string Name { get; set; }
 
         [JsonProperty("description")]

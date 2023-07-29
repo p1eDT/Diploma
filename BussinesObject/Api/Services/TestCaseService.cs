@@ -3,6 +3,7 @@ using BussinesObject.Api.RestEntities;
 using RestSharp;
 using Core.Configuration;
 using Newtonsoft.Json;
+using BussinesObject.Api.RestEntities.TestCase;
 
 namespace BussinesObject.Api.Services
 {
