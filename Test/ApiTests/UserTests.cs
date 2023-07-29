@@ -1,5 +1,6 @@
 ﻿using Bogus;
-using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.User;
+using BussinesObject.Api.RestEntities.User.User;
 using NUnit.Allure.Attributes;
 using System.Net;
 
@@ -58,7 +59,7 @@ namespace Test.ApiTests
 
         public void DeleteUserTest()
         {
-            User userForDelete = apiUserSteps.CreateRandomUser();
+            UserModel userForDelete = apiUserSteps.CreateRandomUser();
 
             var response = userService.DeleteUser(userForDelete.Id);
 

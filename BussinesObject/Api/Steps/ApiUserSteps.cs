@@ -1,5 +1,7 @@
 ﻿using Bogus;
 using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.User;
+using BussinesObject.Api.RestEntities.User.User;
 using BussinesObject.Api.Services;
 using Newtonsoft.Json;
 using NUnit.Allure.Attributes;
@@ -15,7 +17,7 @@ namespace Api.BusinessObject.Steps
         }
 
         [AllureStep]
-        public User CreateRandomUser() 
+        public UserModel CreateRandomUser() 
         {
             Faker faker = new Faker();
 
@@ -35,7 +37,7 @@ namespace Api.BusinessObject.Steps
             Assert.IsTrue(userResponse.StatusCode.Equals(HttpStatusCode.Created));
             logger.Info("Created random user {@userModel}", userModel);
 
-            return JsonConvert.DeserializeObject<UserResponse>(userResponse.Content).data;
+            return JsonConvert.DeserializeObject<CommonResultResponse<UserModel>>(userResponse.Content).Data;
         }
     }
 }

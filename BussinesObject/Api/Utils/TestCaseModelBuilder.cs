@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.TestCase;
 
 namespace BussinesObject.Api.Utils
 {

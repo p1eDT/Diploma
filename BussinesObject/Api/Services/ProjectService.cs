@@ -1,5 +1,7 @@
 ﻿using Api.RestCore;
 using BussinesObject.Api.RestEntities;
+using BussinesObject.Api.RestEntities.Project;
+using BussinesObject.Api.RestEntities.Project.Project;
 using Core.Configuration;
 using RestSharp;
 
@@ -39,10 +41,10 @@ namespace BussinesObject.Api.Services
             return apiClient.Execute(request);
         }
 
-        public Project GetProjectByCode<ProjectType>(string code) where ProjectType : Project
+        public ProjectModel GetProjectByCode<ProjectType>(string code) where ProjectType : ProjectModel
         {
             var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
-            return apiClient.Execute<CommonResultResponse<Project>>(request).Data;
+            return apiClient.Execute<CommonResultResponse<ProjectModel>>(request).Data;
         }
     }
 }

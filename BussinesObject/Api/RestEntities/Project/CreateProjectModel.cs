@@ -1,4 +1,4 @@
-﻿namespace BussinesObject.Api.RestEntities
+﻿namespace BussinesObject.Api.RestEntities.Project.Project
 {
     public class CreateProjectModel
     {
