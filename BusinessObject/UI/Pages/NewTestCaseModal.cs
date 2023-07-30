@@ -5,12 +5,17 @@ using OpenQA.Selenium;
 
 namespace BusinessObject.UI.Pages
 {
-    public class NewTestCaseModal
+    public class NewTestCaseModal:HomePage
     {
-        Input testCaseName = new("text", "name");
-        Input duration = new("tel", "duration");
+        By stepTextDiv = By.XPath("//p[@data-placeholder]/parent::div[contains(@class,'is-input')]");
+        By durationDangerP = By.XPath("//p[@class='help is-danger']");
         Button addButton = ButtonBuilder.SuccessButton();
         Button plusButton = new(By.XPath("//a[@class='button is-primary']"));
+
+        Input testCaseName = new("text", "name");
+        Input duration = new("tel", "duration");
+        Input stepInput = new(By.XPath("//div[@class='ProseMirror is-input']"));
+
         Faker faker = new Faker();
 
         public void CreateTestCase(string name,string time)
@@ -25,14 +30,13 @@ namespace BusinessObject.UI.Pages
             testCaseName.SetText(name);
             duration.GetElement().SendKeys(time);
 
-            var inputFirst = Browser.Instance.Driver.FindElement(By.XPath("//div[@class='ProseMirror is-input']"));
-            inputFirst.SendKeys(faker.Name.JobDescriptor());
+            stepInput.GetElement().SendKeys(faker.Name.JobDescriptor());
 
             for (int i = 1; i < stepCount; i++)
             {
                 plusButton.ClickElementViaJs();
 
-                var input = Browser.Instance.Driver.FindElement(By.XPath("//p[@data-placeholder]/parent::div[contains(@class,'is-input')]"));
+                var input = Driver.FindElement(stepTextDiv);
                 input.SendKeys(faker.Name.JobDescriptor());
             }
 
@@ -41,7 +45,7 @@ namespace BusinessObject.UI.Pages
 
         public string GetDangerText()
         {
-            return Browser.Instance.Driver.FindElement(By.XPath("//p[@class='help is-danger']")).Text;
+            return Driver.FindElement(durationDangerP).Text;
         }
     }
 }
