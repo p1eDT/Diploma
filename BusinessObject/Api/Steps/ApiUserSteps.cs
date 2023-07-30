@@ -17,17 +17,17 @@ namespace Api.BusinessObject.Steps
         }
 
         [AllureStep]
-        public UserModel CreateRandomUser() 
+        public UserModel CreateRandomUser()
         {
-            Faker faker = new Faker();
+            var password = faker.Internet.Password(prefix:"4#");
 
             var userModel = new CreateUserModel()
             {
                 FirstName = $"{faker.Person.FirstName}",
                 LastName = $"{faker.Person.LastName}",
                 Email = $"{faker.Person.Email}",
-                Password = "P@ssw0rd!",
-                PasswordConfirmation = "P@ssw0rd!",
+                Password = password,
+                PasswordConfirmation = password,
                 Admin = false
             };
 
