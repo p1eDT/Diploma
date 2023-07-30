@@ -33,7 +33,7 @@ namespace Core.Selenium
         {
             try
             {
-                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed && Browser.Instance.Driver!=null)
                 {
                     Screenshot screenshot = ((ITakesScreenshot)Browser.Instance.Driver).GetScreenshot();
                     byte[] bytes = screenshot.AsByteArray;

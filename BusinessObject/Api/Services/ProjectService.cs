@@ -10,7 +10,7 @@ namespace BusinessObject.Api.Services
     public class ProjectService : BaseService
     {
         public string ProjectEndpoint = "/projects";
-        public string ProjectByCodeEndpoint = "/projects/{code}";
+        public string ProjectByIdEndpoint = "/projects/{id}";
 
         public ProjectService() : base(AppConfiguration.Api.BaseUrl) { }
 
@@ -21,9 +21,9 @@ namespace BusinessObject.Api.Services
             return response;
         }
 
-        public RestResponse GetProjectByCode(string code)
+        public RestResponse GetProjectById(int id)
         {
-            var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByIdEndpoint).AddUrlSegment("id", id);
             var response = apiClient.Execute(request);
             return response;
         }
@@ -35,15 +35,15 @@ namespace BusinessObject.Api.Services
             return apiClient.Execute(request);
         }
 
-        public RestResponse DeleteProjectByCode(string code)
+        public RestResponse DeleteProjectById(int id)
         {
-            var request = new RestRequest(ProjectByCodeEndpoint, Method.Delete).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByIdEndpoint, Method.Delete).AddUrlSegment("id", id);
             return apiClient.Execute(request);
         }
 
-        public ProjectModel GetProjectByCode<ProjectType>(string code) where ProjectType : ProjectModel
+        public ProjectModel GetProjectById<ProjectType>(int id) where ProjectType : ProjectModel
         {
-            var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByIdEndpoint).AddUrlSegment("id", id);
             return apiClient.Execute<CommonResultResponse<ProjectModel>>(request).Data;
         }
     }

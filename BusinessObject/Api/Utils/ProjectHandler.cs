@@ -1,4 +1,5 @@
 ﻿using Api.BusinessObject.Steps;
+using BusinessObject.Api.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,20 @@ namespace BusinessObject.Api.Utils
 {
     public class ProjectHandler
     {
-        public static List<string> projectCodes = new List<string>();
+        public static List<int> projectCodes = new List<int>();
 
-        public static void AddProjectCodeForDelete(string code)
+        public static void AddProjectIdForDelete(int id)
         {
-            projectCodes.Add(code);
+            projectCodes.Add(id);
         }
 
         public static void DeleteProjects()
         {
-            var apiProjectSteps = new ApiProjectSteps();
+            var apiProjectSteps = new ProjectService();
 
             foreach (var project in projectCodes)
             {
-                apiProjectSteps.DeleteProjectByCode(project);
+                apiProjectSteps.DeleteProjectById(project);
             }
         }
     }

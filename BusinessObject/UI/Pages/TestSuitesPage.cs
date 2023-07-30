@@ -55,7 +55,8 @@ namespace BusinessObject.UI.Pages
             }
             else
             {
-                Assert.Fail($"Test suite not found");
+                Logger.Info($"Test suite not found");
+                Assert.Fail();
             }
             return testSuite;
         }

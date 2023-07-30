@@ -9,9 +9,9 @@ namespace Api.BusinessObject.Steps
 {
     public class ApiProjectSteps : ProjectService
     {
-        public new ProjectModel GetProjectByCode(string code)
+        public new ProjectModel GetProjectById(int id)
         {
-            var response = base.GetProjectByCode(code);
+            var response = base.GetProjectById(id);
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK));
             Assert.IsNotNull(response.Content);
 
