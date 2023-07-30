@@ -6,7 +6,7 @@ namespace BusinessObject.UI.Pages
 {
     public class TestSuitesPage : HomePage, IDelete
     {
-        Button AddTestSuiteButton = ButtonBuilder.AddButton();
+        //Button AddTestSuiteButton = ButtonBuilder.AddButton();
 
         public TestSuitesPage()
         {
@@ -24,16 +24,17 @@ namespace BusinessObject.UI.Pages
 
         public NewTestSuiteModal OpenNewTestSuiteModal()
         {
-            AddTestSuiteButton.ClickElementViaJs();
+            Logger.Info("Try click add test suite");
+            Header.AddButton.ClickElementViaJs();
             return new NewTestSuiteModal();
         }
 
         public TestCasesPage OpenTestSuite(string nameTestSuite)
         {
-            Logger.Info("Try to open by {@value} test suite", nameTestSuite);
+            Logger.Info("Try to open {nameTestSuite} test suite", nameTestSuite);
             base.SearchElement(nameTestSuite);
             new LinkText("is-link is-inverted", nameTestSuite).ClickElementViaJs();
-
+            Logger.Info("Test suite {nameTestSuite} open", nameTestSuite);
             return new TestCasesPage();
         }
 

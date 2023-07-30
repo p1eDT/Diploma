@@ -1,15 +1,15 @@
 ﻿using Bogus;
+using BusinessObject.UI.Pages.Modals;
 using Core.Selenium;
 using Core.Selenium.Elements;
 using OpenQA.Selenium;
 
 namespace BusinessObject.UI.Pages
 {
-    public class NewTestCaseModal:HomePage
+    public class NewTestCaseModal:AddModal
     {
         By stepTextDiv = By.XPath("//p[@data-placeholder]/parent::div[contains(@class,'is-input')]");
         By durationDangerP = By.XPath("//p[@class='help is-danger']");
-        Button addButton = ButtonBuilder.SuccessButton();
         Button plusButton = new(By.XPath("//a[@class='button is-primary']"));
 
         Input testCaseName = new("text", "name");
@@ -22,7 +22,7 @@ namespace BusinessObject.UI.Pages
         {
             testCaseName.SetText(name);
             duration.SetText(time);
-            addButton.ClickElementViaJs();
+            SuccessButton.ClickElementViaJs();
         }
 
         public void CreateTestCase(string name, string time, int stepCount)
@@ -40,7 +40,7 @@ namespace BusinessObject.UI.Pages
                 input.SendKeys(faker.Name.JobDescriptor());
             }
 
-            addButton.ClickElementViaJs();
+            SuccessButton.ClickElementViaJs();
         }
 
         public string GetDangerText()

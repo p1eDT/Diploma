@@ -1,8 +1,9 @@
-﻿using Core.Selenium.Elements;
+﻿using BusinessObject.UI.Pages.Modals;
+using Core.Selenium.Elements;
 
 namespace BusinessObject.UI.Pages
 {
-    public class NewTestSuiteModal:HomePage
+    public class NewTestSuiteModal:AddModal
     {
         Input TestSuiteName = new("text","name");
         TextArea Description = new("description");
@@ -11,7 +12,7 @@ namespace BusinessObject.UI.Pages
         {
             TestSuiteName.SetText(name);
             Description.SetText(description);
-            ButtonBuilder.SuccessButton().ClickElementViaJs();
+            SuccessButton.ClickElementViaJs();
         }
     }
 }

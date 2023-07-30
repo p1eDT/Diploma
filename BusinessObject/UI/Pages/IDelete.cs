@@ -1,4 +1,5 @@
-﻿using Core.Selenium;
+﻿using BusinessObject.UI.Pages.Modals;
+using Core.Selenium;
 using Core.Selenium.Elements;
 using OpenQA.Selenium;
 
@@ -28,8 +29,8 @@ namespace BusinessObject.UI.Pages
 
         public void DeleteFromDropdown()
         {
-            ButtonBuilder.SelectedDropdownButton().ClickElementViaJs();
-            ButtonBuilder.DeleteInDropDownButton().ClickElementViaJs();
+            DropdownComponent.SelectedDropdownButton.ClickElementViaJs();
+            DropdownComponent.DeleteInDropDownButton.ClickElementViaJs();
         }
 
         public void IsConfirm(bool confirm=true)
@@ -37,11 +38,11 @@ namespace BusinessObject.UI.Pages
             if (confirm)
             {
                 CheckBoxBuilder.GetCheckBoxConfirmation().SetCheckBoxState(true);
-                ButtonBuilder.ConfirmationDeleteButton().ClickElementViaJs();
+                ConfirmModal.ConfirmationDeleteButton.ClickElementViaJs();
             }
             else
-            { 
-                ButtonBuilder.ConfirmationCancelButton().ClickElementViaJs();
+            {
+                ConfirmModal.ConfirmationCancelButton.ClickElementViaJs();
             }
         }
     }

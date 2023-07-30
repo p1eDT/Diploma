@@ -1,4 +1,5 @@
 ﻿using Core.Selenium;
+using Core.Selenium.Elements;
 using OpenQA.Selenium;
 
 namespace BusinessObject.UI.Pages
@@ -9,6 +10,8 @@ namespace BusinessObject.UI.Pages
         private By settings = By.XPath("//div[@class='navbar-end']/a");
         private By account = By.CssSelector("a.navbar-link:has(figure)");
         private By navMenu = By.CssSelector("div.navbar-start");
+        
+        public Button AddButton=new Button("primary");
 
         public IWebElement Brand;
         public IWebElement Settings;
