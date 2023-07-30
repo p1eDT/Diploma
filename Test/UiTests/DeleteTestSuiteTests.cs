@@ -1,5 +1,5 @@
 ﻿using Bogus.DataSets;
-using BussinesObject.UI.Pages;
+using BusinessObject.UI.Pages;
 using Core.Selenium;
 using Core.Selenium.Elements;
 using NUnit.Allure.Attributes;

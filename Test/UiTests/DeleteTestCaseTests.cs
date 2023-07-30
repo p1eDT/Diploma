@@ -1,5 +1,5 @@
 ﻿using Api.TestCase.Steps;
-using BussinesObject.UI.Pages;
+using BusinessObject.UI.Pages;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;

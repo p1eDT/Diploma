@@ -1,7 +1,7 @@
 ﻿using Api.TestCase.Steps;
 using Api.Tests;
-using BussinesObject.Api.Services;
-using BussinesObject.Api.Utils;
+using BusinessObject.Api.Services;
+using BusinessObject.Api.Utils;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using System.Net;

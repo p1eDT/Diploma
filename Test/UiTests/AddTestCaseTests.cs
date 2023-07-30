@@ -1,6 +1,6 @@
 ﻿using Api.TestCase.Steps;
-using BussinesObject.UI.Pages;
-using BussinesObject.UI.Steps;
+using BusinessObject.UI.Pages;
+using BusinessObject.UI.Steps;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 
