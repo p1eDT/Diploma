@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- feature
+- master
 
 pool:
   name: 'Alex'
@@ -23,6 +23,8 @@ steps:
     arguments: '--configuration Debug'
 
 - task: DotNetCoreCLI@2
-  displayName: Run test
+  displayName: 'Run API tests'
   inputs:
-    command: 'test'
+    command: test
+    projects: Test\Test.csproj
+    arguments: --filter "FullyQualifiedName=Test.ApiTests"
