@@ -16,7 +16,7 @@ namespace Api.BusinessObject.Steps
         {
         }
 
-        [AllureStep]
+        [AllureStep("CreateRandomUser")]
         public UserModel CreateRandomUser()
         {
             var password = faker.Internet.Password(prefix:"4#");

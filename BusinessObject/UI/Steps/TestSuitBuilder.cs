@@ -1,15 +1,14 @@
 ﻿using Bogus;
 using BusinessObject.Api.RestEntities.TestSuite;
 using Core.Selenium;
+using System.Runtime.CompilerServices;
 
 namespace BusinessObject.UI.Steps
 {
-    public class TestSuitBuilder
+    public class TestSuitBuilder: BaseBuilder
     {
-        public static TestSuiteModel CreateRandomTestSuitModel(int projectId = 1)
+        private TestSuiteModel RandomTestSuitModel(int projectId)
         {
-            Faker faker = new Faker();
-
             return new TestSuiteModel()
             {
                 ProjectId = projectId,
@@ -17,5 +16,8 @@ namespace BusinessObject.UI.Steps
                 Description = faker.Commerce.ProductDescription()
             };
         }
+
+        public static TestSuiteModel CreateRandomTestSuitModel(int projectId = 1) =>new TestSuitBuilder().RandomTestSuitModel(projectId);
+
     }
 }

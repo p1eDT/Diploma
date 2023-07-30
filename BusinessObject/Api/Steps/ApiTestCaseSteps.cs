@@ -3,6 +3,7 @@ using BusinessObject.Api.RestEntities.TestCase;
 using BusinessObject.Api.Services;
 using BusinessObject.Api.Steps;
 using Newtonsoft.Json;
+using NUnit.Allure.Steps;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using System.Net;
@@ -11,6 +12,7 @@ namespace Api.TestCase.Steps
 {
     public class ApiTestCaseSteps : TestCaseService
     {
+
         /// <summary>
         /// 
         /// </summary>
@@ -51,6 +53,7 @@ namespace Api.TestCase.Steps
             return testCase;
         }
 
+        [AllureStep("DeleteTestCaseById {0}")]
         public new void DeleteTestCaseById(int id)
         {
             logger.Info($"Delete test case with id: {id}");
@@ -62,6 +65,7 @@ namespace Api.TestCase.Steps
             logger.Info($"Test case id {id} was removed");
         }
 
+        [AllureStep("UpdateTestCase {testCaseModel.name} {1}")]
         public new TestCaseModel UpdateTestCase(TestCaseModel testCaseModel, int testCaseId)
         {
             logger.Debug("Which testCaseModel to update: {@testCaseModel}", testCaseModel);

@@ -3,12 +3,10 @@ using Core;
 
 namespace BusinessObject.UI.Steps
 {
-    public class TestCaseBuilder
+    public class TestCaseBuilder: BaseBuilder
     {
-        public TestCaseModel GetRandomTestCaseModel(string testSuite)
+        private TestCaseModel RandomTestCaseModel(string testSuite)
         {
-            Faker faker = new Faker();
-
             return new TestCaseModel
             (
                 nameTestCase: faker.Lorem.Word(),
@@ -17,5 +15,7 @@ namespace BusinessObject.UI.Steps
                 stepCount: faker.Random.Number(10)
              );
         }
+
+        public static TestCaseModel GetRandomTestCaseModel(string testSuite)=>new TestCaseBuilder().RandomTestCaseModel(testSuite);
     }
 }
