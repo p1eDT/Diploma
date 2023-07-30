@@ -2,7 +2,7 @@
 
 namespace BusinessObject.UI.Pages
 {
-    public class NewTestSuiteModal
+    public class NewTestSuiteModal:HomePage
     {
         Input TestSuiteName = new("text","name");
         TextArea Description = new("description");
