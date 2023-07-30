@@ -17,22 +17,38 @@ namespace Api.TestCase.Steps
         /// <param name="testSuiteId">test Suite Id in which will be created test case</param>
         /// <param name="name">TestCase name, if default create random with faker.Internet.DomainName</param>
         /// <returns></returns>
-        public TestCaseModel CreateTestCase(int testSuiteId,string name=null)
+        public TestCaseModel CreateTestCase(int testSuiteId,string name=null,bool isPrepare=true)
         {
+            if (isPrepare) 
+            { 
+                logger.Info("--Prepare: creation test case"); 
+            }
+
             logger.Info("Creating new test case in test suite {testsuit}", new ApiTestSuitSteps().GetTestSuiteById(testSuiteId));
             var testCaseModel = new CreateTestCaseModel()
             {
                 TestSuiteId = testSuiteId,
                 Name = name??faker.Internet.DomainName()
             };
-            logger.Debug("testCaseModel: {@testCaseModel}", testCaseModel);
+            logger.Debug("TestCaseModel: {@testCaseModel}", testCaseModel);
 
             var response = base.CreateTestCase(testCaseModel);
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.Created));
             Assert.IsNotNull(response.Content);
             logger.Info($"Test case created");
 
-            return JsonConvert.DeserializeObject<CommonResultResponse<TestCaseModel>>(response.Content).Data;
+            var testCase = JsonConvert.DeserializeObject<CommonResultResponse<TestCaseModel>>(response.Content).Data;
+
+            logger.Info($"Test case created with " +
+                $"\n code: {testCase.Code} " +
+                $"\n name: {testCase.Name} " +
+                $"\n id {testCase.Id}");
+
+            if ((isPrepare))
+            {
+                logger.Info("--Prepare: test case created");
+            }
+            return testCase;
         }
 
         public new void DeleteTestCaseById(int id)

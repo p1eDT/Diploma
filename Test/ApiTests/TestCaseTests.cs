@@ -33,18 +33,12 @@ namespace Test.ApiTests
         public void UpdateTestCase()
         {
             int testSuiteId = 42;
-            logger.Message($"--Prepare: creation test case");
-
-            var oldtestCase = apiTestCaseSteps.CreateTestCase(testSuiteId);
-            logger.Message($"--Prepare: test case created with " +
-                $"\n code: {oldtestCase.Code} " +
-                $"\n name: {oldtestCase.Name} " +
-                $"\n id {oldtestCase.Id}");
+            var oldTestCase = apiTestCaseSteps.CreateTestCase(testSuiteId);            
 
             var newTestCaseValues = TestCaseModelBuilder.TestCaseModelRandomValue();
-            var updateResultTestCase = apiTestCaseSteps.UpdateTestCase(newTestCaseValues, oldtestCase.Id);
+            var updateResultTestCase = apiTestCaseSteps.UpdateTestCase(newTestCaseValues, oldTestCase.Id);
 
-            Assert.That(oldtestCase, Is.Not.EqualTo(updateResultTestCase));
+            Assert.That(oldTestCase, Is.Not.EqualTo(updateResultTestCase));
         }
     }
 }

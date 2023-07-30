@@ -7,7 +7,7 @@ using BusinessObject.Api.Utils;
 
 namespace Test.ApiTests
 {
-    public class CreateProjectTests:ApiAuthTests
+    public class ProjectTests:ApiAuthTests
     {
         [Test]
         [AllureTag("Positive tests")]
