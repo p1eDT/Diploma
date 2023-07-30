@@ -1,6 +1,6 @@
 ﻿using Bogus;
-using BussinesObject.Api.RestEntities.User;
-using BussinesObject.Api.RestEntities.User.User;
+using BusinessObject.Api.RestEntities.User;
+using BusinessObject.Api.RestEntities.User.User;
 using NUnit.Allure.Attributes;
 using System.Net;
 

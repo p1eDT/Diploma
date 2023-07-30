@@ -1,7 +1,7 @@
 ﻿using Api.BusinessObject.Steps;
 using Api.TestCase.Steps;
 using Api.Tests;
-using BussinesObject.Api.Services;
+using BusinessObject.Api.Services;
 using Core.Configuration;
 
 namespace Test.ApiTests

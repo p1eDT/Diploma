@@ -1,5 +1,7 @@
 ﻿using Api.TestCase.Steps;
-using BussinesObject.UI.Pages;
+using BusinessObject.Api.Services;
+using BusinessObject.Api.Steps;
+using BusinessObject.UI.Pages;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
@@ -15,10 +17,11 @@ namespace Test.UiTests
         public void DeleteTCWithCreatedTestCasesTest()
         {
             var testSuitId = 42;
+            var testSuite = new ApiTestSuitSteps().GetTestSuiteById(testSuitId).Name;
+            
             var testCase = new ApiTestCaseSteps().CreateTestCase(testSuitId);
             logger.Message($"Test case for delete: {testCase.Name}");
 
-            var testSuite = "Feature: My Account";
 
             var cases = new LoginPage()
                         .OpenPage()

@@ -1,7 +1,7 @@
 ﻿using Api.TestCase.Steps;
 using Api.Tests;
-using BussinesObject.Api.Services;
-using BussinesObject.Api.Utils;
+using BusinessObject.Api.Services;
+using BusinessObject.Api.Utils;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 using System.Net;
@@ -33,18 +33,12 @@ namespace Test.ApiTests
         public void UpdateTestCase()
         {
             int testSuiteId = 42;
-            logger.Message($"--Prepare: creation test case");
-
-            var oldtestCase = apiTestCaseSteps.CreateTestCase(testSuiteId);
-            logger.Message($"--Prepare: test case created with " +
-                $"\n code: {oldtestCase.Code} " +
-                $"\n name: {oldtestCase.Name} " +
-                $"\n id {oldtestCase.Id}");
+            var oldTestCase = apiTestCaseSteps.CreateTestCase(testSuiteId);            
 
             var newTestCaseValues = TestCaseModelBuilder.TestCaseModelRandomValue();
-            var updateResultTestCase = apiTestCaseSteps.UpdateTestCase(newTestCaseValues, oldtestCase.Id);
+            var updateResultTestCase = apiTestCaseSteps.UpdateTestCase(newTestCaseValues, oldTestCase.Id);
 
-            Assert.That(oldtestCase, Is.Not.EqualTo(updateResultTestCase));
+            Assert.That(oldTestCase, Is.Not.EqualTo(updateResultTestCase));
         }
     }
 }
