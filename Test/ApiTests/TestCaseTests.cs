@@ -13,7 +13,7 @@ namespace Test.ApiTests
         [AllureSubSuite("API")]
         public void CreateTestCaseWithRandomName()
         {
-            int testSuiteId = 42;
+            int testSuiteId = 43;
             var testCaseResponse = apiTestCaseSteps.CreateTestCase(testSuiteId);
             logger.Message($"Test case created with code: {testCaseResponse.Code} and name: {testCaseResponse.Name}");
 
@@ -28,7 +28,7 @@ namespace Test.ApiTests
         [AllureSubSuite("API")]
         public void UpdateTestCase()
         {
-            int testSuiteId = 42;
+            int testSuiteId = 43;
             var oldTestCase = apiTestCaseSteps.CreateTestCase(testSuiteId);            
 
             var newTestCaseValues = TestCaseModelBuilder.TestCaseModelRandomValue();
