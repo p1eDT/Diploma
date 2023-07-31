@@ -1,11 +1,7 @@
-﻿using Api.TestCase.Steps;
-using Bogus.DataSets;
-using BusinessObject.Api.Steps;
+﻿using BusinessObject.Api.Steps;
 using BusinessObject.UI.Pages;
 using Core.Selenium;
-using Core.Selenium.Elements;
 using NUnit.Allure.Attributes;
-using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 
 namespace Test.UiTests
@@ -16,6 +12,7 @@ namespace Test.UiTests
         [AllureTag("Positive tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
+        [AllureSubSuite("UI")]
         public void DeleteTSTest()
         {
             var projectId = 1;

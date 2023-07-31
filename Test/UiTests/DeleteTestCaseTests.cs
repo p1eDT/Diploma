@@ -1,5 +1,4 @@
 ﻿using Api.TestCase.Steps;
-using BusinessObject.Api.Services;
 using BusinessObject.Api.Steps;
 using BusinessObject.UI.Pages;
 using Core.Selenium;
@@ -14,6 +13,7 @@ namespace Test.UiTests
         [AllureTag("Positive tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
+        [AllureSubSuite("UI")]
         public void DeleteTCWithCreatedTestCasesTest()
         {
             var testSuitId = 43;
