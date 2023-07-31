@@ -16,7 +16,7 @@ namespace Test.UiTests
         [AllureSuite("TestMonitor")]
         public void DeleteTCWithCreatedTestCasesTest()
         {
-            var testSuitId = 42;
+            var testSuitId = 43;
             var testSuite = new ApiTestSuitSteps().GetTestSuiteById(testSuitId).Name;
             
             var testCase = new ApiTestCaseSteps().CreateTestCase(testSuitId);
