@@ -1,4 +1,5 @@
 ﻿using BusinessObject.UI.Pages.Modals;
+using Core.Selenium;
 using Core.Selenium.Elements;
 
 namespace BusinessObject.UI.Pages
@@ -13,6 +14,8 @@ namespace BusinessObject.UI.Pages
             TestSuiteName.SetText(name);
             Description.SetText(description);
             SuccessButton.ClickElementViaJs();
+
+            WaitHelper.WaitHideElement(Driver, modalForm);
         }
     }
 }

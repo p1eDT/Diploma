@@ -13,6 +13,8 @@ namespace BusinessObject.UI.Pages
         Button LoginButton = new("primary is-fullwidth");
         By ErrorMessage = By.ClassName("message-body");
         public string TextMessage = "These credentials do not match our records.";
+        private string textError429 = "Too Many Requests";
+        private int attemptCounter = 0;
 
         public LoginPage()
         {
@@ -32,6 +34,14 @@ namespace BusinessObject.UI.Pages
             EmailInput.GetElement().SendKeys(userModel.Email);
             PasswordInput.GetElement().SendKeys(userModel.Password);
             LoginButton.GetElement().Click();
+
+            if(Driver.Title == textError429 && attemptCounter < 2)
+            {
+                attemptCounter++;
+                Logger.Info("Unable to login due to an error {textError429}, try again after 5 seconds. Count try: {countTry}", textError429, attemptCounter);
+                Thread.Sleep(5000);
+                OpenPage().TryToLogin(userModel);
+            }
         }
 
         public override LoginPage OpenPage()

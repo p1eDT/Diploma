@@ -23,6 +23,16 @@ namespace BusinessObject.UI.Pages
             testCaseName.SetText(name);
             duration.SetText(time);
             SuccessButton.ClickElementViaJs();
+
+            if (!Driver.FindElement(durationDangerP).Displayed)
+            {
+                Logger.Info("No errors found, pending hide");
+                WaitHelper.WaitHideElement(Driver, modalForm);
+            }
+            else
+            {
+                Logger.Info("Validation errors found: {DangerText}", GetDangerText());
+            }
         }
 
         public void CreateTestCase(string name, string time, int stepCount)
