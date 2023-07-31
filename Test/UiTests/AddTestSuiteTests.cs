@@ -1,5 +1,4 @@
-﻿using Bogus;
-using BusinessObject.UI.Pages;
+﻿using BusinessObject.UI.Pages;
 using BusinessObject.UI.Steps;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
@@ -22,6 +21,7 @@ namespace Test.UiTests
         [AllureTag("Positive tests")]
         [AllureOwner("Nikita")]
         [AllureSuite("TestMonitor")]
+        [AllureSubSuite("UI")]
         public void CreateTestSuiteTest()
         {
             var testSuite = TestSuitBuilder.CreateRandomTestSuitModel();

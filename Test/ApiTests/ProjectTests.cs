@@ -1,9 +1,5 @@
-﻿using Bogus;
-using BusinessObject.Api.RestEntities;
-using System.Net;
-using NUnit.Framework;
+﻿using System.Net;
 using NUnit.Allure.Attributes;
-using BusinessObject.Api.Utils;
 
 namespace Test.ApiTests
 {
