@@ -57,7 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BussinesObject\BussinesObject.csproj" />
+    <ProjectReference Include="..\BusinessObject\BusinessObject.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 

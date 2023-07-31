@@ -1,13 +1,7 @@
-﻿using Core.Selenium;
-using NLog;
+﻿using NLog;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core
 {
@@ -49,11 +43,7 @@ namespace Core
                     }
                 }
             }
-            else
-            {
-                result = "stack is null";
-            }
-            return result;
+                return "stack is null";
         }
     }
 }

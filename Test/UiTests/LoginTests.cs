@@ -1,8 +1,7 @@
-﻿using BussinesObject;
-using BussinesObject.UI.Pages;
+﻿using BusinessObject;
+using BusinessObject.UI.Pages;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
-using OpenQA.Selenium;
 
 namespace Test.UiTests
 {
@@ -12,6 +11,7 @@ namespace Test.UiTests
         [AllureTag("Positive tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
+        [AllureSubSuite("UI")]
         public void LoginUser()
         {
             var homePage = new LoginPage()
@@ -20,10 +20,11 @@ namespace Test.UiTests
             Assert.That(homePage.BrandUrl(), Is.EqualTo(BasePage.BaseUrl));
         }
 
+        [Test]
         [AllureTag("Negative tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
-        [Test]
+        [AllureSubSuite("UI")]
         public void LoginAsFakeUser()
         {
             var message = new LoginPage()
@@ -32,10 +33,11 @@ namespace Test.UiTests
             Assert.That(message.GetErrorMessage(), Is.EqualTo(message.TextMessage));
         }
 
+        [Test]
         [AllureTag("Negative tests")]
         [AllureOwner("NotNikita")]
         [AllureSuite("TestMonitor")]
-        [Test]
+        [AllureSubSuite("UI")]
         public void LoginWithEmptyUser()
         {
             var user = UserBuilder.EmptyUser();

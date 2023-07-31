@@ -1,5 +1,5 @@
-﻿using Bogus;
-using BussinesObject.UI.Pages;
+﻿using BusinessObject.UI.Pages;
+using BusinessObject.UI.Steps;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 
@@ -9,26 +9,31 @@ namespace Test.UiTests
     {
 
         [SetUp]
-        public void SetUp()
+        public void Prepare()
         {
-            new LoginPage().OpenPage().Login().SelectProject().OpenSuites();
+            new LoginPage()
+                .Login()
+                .SelectProject()
+                .OpenSuites();
         }
 
         [Test]
         [AllureTag("Positive tests")]
         [AllureOwner("Nikita")]
         [AllureSuite("TestMonitor")]
+        [AllureSubSuite("UI")]
         public void CreateTestSuiteTest()
         {
-            Faker faker = new Faker();
-            string testSuiteName = faker.Commerce.ProductName();
-            string description = faker.Commerce.ProductDescription();
+            var testSuite = TestSuitBuilder.CreateRandomTestSuitModel();
+            var testSuitPage = new TestSuitesPage();
 
-            new TestSuitesPage().OpenNewTestSuiteModal().CreateTestSuite(testSuiteName, description);
+            testSuitPage
+                .OpenNewTestSuiteModal()
+                .CreateTestSuite(testSuite.Name, testSuite.Description);
 
-            string alert = new HomePage().GetAlertText();
+            var alert = testSuitPage.GetAlertText();
 
-            Assert.That(alert, Is.EqualTo($"Test suite {testSuiteName} created"));
+            Assert.That(alert, Is.EqualTo($"Test suite {testSuite.Name} created"));
         }
     }
 }

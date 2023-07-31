@@ -42,7 +42,7 @@ namespace Core.Selenium
         public void NavigateToUrl(string url)
         {
             driver.Navigate().GoToUrl(url);
-            Logger.Info("Navigate to url: {0}", url);
+            Logger.Info("Navigate to url: {url}", url);
         }
 
         public void AcceptAllert()

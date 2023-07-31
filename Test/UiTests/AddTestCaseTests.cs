@@ -1,5 +1,6 @@
-﻿using BussinesObject.UI.Pages;
-using BussinesObject.UI.Steps;
+﻿using Api.TestCase.Steps;
+using BusinessObject.UI.Pages;
+using BusinessObject.UI.Steps;
 using Core.Selenium;
 using NUnit.Allure.Attributes;
 
@@ -7,11 +8,12 @@ namespace Test.UiTests
 {
     public class AddTestCaseTests : BaseTest
     {
+        TestSuitesPage Suites;
 
         [SetUp]
-        public void SetUp()
+        public void Prepare()
         {
-            new LoginPage().OpenPage().Login().SelectProject().OpenSuites();
+            Suites = new LoginPage().Login().SelectProject().OpenSuites();
         }
 
         [Test]
@@ -22,16 +24,19 @@ namespace Test.UiTests
         public void CreateTestCaseTest()
         {
             string testSuiteName = "TestSuiteTest3";
-            var testCase = new TestCaseBuilder().GetRandomTestCaseModel(testSuiteName);
-
-            new TestSuitesPage().OpenTestSuite(testCase.TestSuiteName)
-                .OpenNewTestCaseModal()
-                .CreateTestCase(testCase.NameTestCase, testCase.Duration, testCase.StepCount);
+            var testCase = TestCaseBuilder.GetRandomTestCaseModel(testSuiteName);
+            
+            Suites.OpenTestSuite(testCase.TestSuiteName)
+                  .OpenNewTestCaseModal()
+                  .CreateTestCase(testCase.NameTestCase, testCase.Duration, testCase.StepCount);
 
             string testCaseCode = new TestCasesPage().GetTestCaseCode(testCase.NameTestCase);
             string alert = new HomePage().GetAlertText();
 
             Assert.That(alert, Is.EqualTo($"Test case {testCaseCode} created"));
+
+            int testCaseId=int.Parse(testCaseCode.Substring(2));
+            new ApiTestCaseSteps().DeleteTestCaseById(testCaseId);
         }
 
         [Test]
@@ -42,9 +47,10 @@ namespace Test.UiTests
         public void DurationValidTest()
         {
             string testSuiteName = "TestSuiteTest3";
-            var testCase = new TestCaseBuilder().GetRandomTestCaseModel(testSuiteName);
+            var testCase = TestCaseBuilder.GetRandomTestCaseModel(testSuiteName);
 
-            var testCaseModal = new TestSuitesPage().OpenTestSuite(testSuiteName).OpenNewTestCaseModal();
+            var testCaseModal = Suites.OpenTestSuite(testSuiteName)
+                                      .OpenNewTestCaseModal();
 
             testCase.Duration = "abc";
             testCaseModal.CreateTestCase(testCase.NameTestCase, testCase.Duration);
