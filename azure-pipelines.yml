@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- feature
+- master
 
 pool:
   name: 'Alex'
@@ -28,4 +28,3 @@ steps:
     command: test
     projects: Test\Test.csproj
     arguments: --filter "FullyQualifiedName=Test.ApiTests"
-  
