@@ -89,7 +89,7 @@ namespace Test.ApiTests
 
         public void AdminPrivilegesTest()
         {
-            int userId = 8;
+            int userId = 164;
 
             var grant = userService.GrantAdminPrivileges(userId);
             Assert.IsTrue(grant.StatusCode.Equals(HttpStatusCode.OK));
